@@ -1,0 +1,10 @@
+# ChangeLog for app-admin/mmc-agent
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  12 May 2009; Frédéric Liétart <thelinuxfr@free.fr>
+  +files/mmc-agent-2.3.1-kerberos-1.patch, -mmc-agent-2.3.2.ebuild,
+  +mmc-agent-2.3.2-r1.ebuild, +files/mmc-agent-2.3.2-powerdns-1.patch,
+  +files/mmc-agent-2.3.2-printing-1.patch, +files/mmc-agent.initd:
+  Import from linamh overlay
+

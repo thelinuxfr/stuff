@@ -1,0 +1,31 @@
+Submitted By: Mario Fetka (mario dot fetka at gmail dot com)
+Date: 2009-02-17
+Initial Package Version: 2.3.2
+Origin: me
+Upstream Status: unknown
+Description: wrap mmc alias in define and disable php_flag
+ 
+diff -Naur mmc-web-base-2.3.2.orig/confs/apache/mmc.conf.tmpl mmc-web-base-2.3.2/confs/apache/mmc.conf.tmpl
+--- mmc-web-base-2.3.2.orig/confs/apache/mmc.conf.tmpl	2007-09-10 09:11:01.000000000 +0000
++++ mmc-web-base-2.3.2/confs/apache/mmc.conf.tmpl	2009-02-17 13:12:52.904128616 +0000
+@@ -1,10 +1,10 @@
+-### Add an alias /mmc on www server root
+-Alias /mmc ###DATADIR###
++	### Add an alias /mmc on www server root
++	Alias /mmc ###DATADIR###
+ 
+-### Allow access to lmc web directory to everyone 
+-<Directory ###DATADIR###>
+-                AllowOverride None
+-                Order allow,deny
+-                allow from all
+-		php_flag short_open_tag on
+-</Directory>
++	### Allow access to lmc web directory to everyone 
++	<Directory ###DATADIR###>
++		AllowOverride None
++		Order allow,deny
++		allow from all
++		### php_flag short_open_tag on
++	</Directory>
+\ No newline at end of file

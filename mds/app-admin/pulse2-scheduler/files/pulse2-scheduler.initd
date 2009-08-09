@@ -1,0 +1,20 @@
+#!/sbin/runscript
+# Copyright 1999-2007 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+depend() {
+	need net mmc-agent
+}
+
+start() {
+	ebegin "Starting Pulse2 Scheduler"
+	eval start-stop-daemon --start --quiet --exec /usr/sbin/pulse2-scheduler-manager --pidfile /var/run/pulse2-scheduler-manager.pid 
+	eend $?
+}
+
+stop() {
+	ebegin "Stopping Pulse2 Scheduler"
+	start-stop-daemon --stop --quiet --pidfile /var/run/pulse2-scheduler-manager.pid 
+	eend $?
+}

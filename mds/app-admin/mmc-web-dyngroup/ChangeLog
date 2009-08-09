@@ -1,0 +1,11 @@
+# ChangeLog for app-admin/mmc-web-msc
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  17 May 2009; Frédéric Liétart <thelinuxfr@free.fr>
+  +mmc-web-dyngroup-9999.ebuild:
+  Add SVN Ebuild
+
+  11 May 2009; Frédéric Liétart <thelinuxfr@free.fr> ChangeLog:
+  Initial Import.
+
