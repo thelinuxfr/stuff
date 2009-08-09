@@ -1,0 +1,33 @@
+PORTNAME=	wol
+PORTVERSION=	0.7.1
+PORTREVISION=	1
+CATEGORIES=	net
+MASTER_SITES=	${MASTER_SITE_SOURCEFORGE}
+MASTER_SITE_SUBDIR=	ahh
+
+MAINTAINER=	cm@therek.net
+COMMENT=	Tool to wake up Wake-On-LAN compliant computers
+
+GNU_CONFIGURE=		yes
+USE_PERL5_BUILD=	yes
+CPPFLAGS=		-I${LOCALBASE}/include
+LDFLAGS=		-L${LOCALBASE}/lib
+CONFIGURE_ENV=		CPPFLAGS="${CPPFLAGS}" LDFLAGS="${LDFLAGS}"
+
+.if defined(WITHOUT_NLS)
+CONFIGURE_ARGS=	--disable-nls
+PLIST_SUB=	NLS="@comment "
+.else
+USE_GETTEXT=	yes
+USE_ICONV=	yes
+PLIST_SUB=	NLS=""
+.endif
+
+MAN1=		wol.1
+INFO=		wol
+DOCS=		AUTHORS NEWS README TODO
+
+post-install:
+	@${INSTALL_PROGRAM} -v ${WRKSRC}/src/${PORTNAME} ${FREENAS_ROOTFS}/usr/local/bin
+
+.include <bsd.port.mk>
