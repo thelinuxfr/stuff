@@ -1,5 +1,5 @@
 <layman>
-<overlay type="svn" src="http://svn.thelinuxfr.org/svn/mds/" contact="thelinuxfr@free.fr" name="mds">
+<overlay type="svn" src="http://thelinux.googlecode.com/svn/mds/" contact="thelinuxfr@free.fr" name="mds">
 <link>http://overlays.thelinuxfr.org/</link>
 <description>Mandriva Directory Service Overlay</description>
 </overlay>
