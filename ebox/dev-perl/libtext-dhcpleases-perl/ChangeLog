@@ -1,0 +1,8 @@
+# ChangeLog for dev-perl/libtext-dhcpleases-perl
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  05 May 2009; Frédéric Liétart <thelinuxfr@free.fr>
+  +libtext-dhcpleases-perl-0.7.ebuild:
+  Initial Import. Dep for ebox-dhcp
+

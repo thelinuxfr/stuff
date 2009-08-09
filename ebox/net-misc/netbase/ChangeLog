@@ -1,0 +1,8 @@
+# ChangeLog for net-misc/netbase
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  06 May 2009; Frédéric Liétart <thelinuxfr@free.fr>
+  +netbase-4.34.ebuild:
+  Initial Import
+

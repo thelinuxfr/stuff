@@ -1,0 +1,10 @@
+# sys-libs/libebox
+  - review datarootdir (PERL install)
+
+# sys-apps/ebox
+  - review DB script install
+  - create init script for Gentoo
+  - fix Apache conf
+
+# sys-apps/ebox-network
+  - review Ebox script for Gentoo network config

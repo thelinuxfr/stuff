@@ -1,0 +1,7 @@
+# ChangeLog for perl-gcpan/Apache-Singleton
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  18 Mar 2009; Frédéric Liétart <thelinuxfr@free.fr> ChangeLog:
+  Initial Import. Fix Issue 2
+

@@ -1,0 +1,2 @@
+Add variable to /etc/env.d/99locale:
+ECHANGELOG_USER="Frédéric Lietart <xxx@xxx.fr>"
