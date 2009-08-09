@@ -1,0 +1,21 @@
+# ChangeLog for app-misc/hal-info
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  03 Apr 2009; Frédéric Liétart <thelinuxfr@free.fr>
+  -hal-info-20081219.ebuild:
+  Latest in portage
+
+  15 Jan 2009; <fred@gentoo.org> -hal-info-20081022.ebuild,
+  +hal-info-20081219.ebuild:
+  Version bump.
+
+  08 Dec 2008; <fred@gentoo.org> ChangeLog:
+  Version bump.
+
+  08 Dec 2008; <fred@gentoo.org> ChangeLog:
+  Version bump.
+
+  03 Oct 2008; <thelinuxfr@free.fr> ChangeLog:
+  Initial Import in overlay, Git version
+

@@ -1,0 +1,15 @@
+# ChangeLog for media-video/moovida
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  17 Jun 2009; Frédéric Liétart <thelinuxfr@free.fr>
+  -moovida-1.0.2.ebuild, +moovida-1.0.3.ebuild:
+  Version bump.
+
+  16 Jun 2009; Frédéric Liétart <thelinuxfr@free.fr>
+  -moovida-1.0.1.ebuild, +moovida-1.0.2.ebuild:
+  Version bump and add deps dev-python/twisted-web2
+
+  02 Jun 2009; Frédéric Liétart <thelinuxfr@free.fr> ChangeLog:
+  Version bump. Elisa rebranding into Moovida.
+

@@ -1,0 +1,8 @@
+# ChangeLog for app-admin/backintime
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  17 Apr 2009; Frédéric Liétart <thelinuxfr@free.fr>
+  +backintime-0.9.20.ebuild:
+  Initial Import
+

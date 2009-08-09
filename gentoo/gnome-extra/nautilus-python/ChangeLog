@@ -1,0 +1,8 @@
+# ChangeLog for gnome-extra/nautilus-python
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  06 Jun 2009; Frédéric Liétart <thelinuxfr@free.fr>
+  +nautilus-python-0.5.1.ebuild:
+  Initial Import.
+

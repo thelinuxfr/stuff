@@ -1,0 +1,11 @@
+--- nm-applet-dbus-126.conf.old 
++++ nm-applet-dbus-126.conf 
+@@ -23,7 +23,7 @@
+                 <allow send_destination="org.freedesktop.NetworkManagerUserSettings"
+                        send_interface="org.freedesktop.NetworkManagerSettings.Connection.Secrets"/>
+         </policy>
+-        <policy at_console="true">
++        <policy group="plugdev">
+                 <allow own="org.freedesktop.NetworkManagerUserSettings"/>
+ 
+                 <allow send_destination="org.freedesktop.NetworkManagerUserSettings"

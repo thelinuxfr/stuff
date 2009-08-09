@@ -1,0 +1,25 @@
+# ChangeLog for net-fs/samba
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  12 Apr 2009; Frédéric Liétart <thelinuxfr@free.fr>
+  +files/3.0.26a-lazyldflags.patch, +files/3.0.28-autoconf-2.62-fix.patch,
+  +files/config-3.2, +samba-3.2.10.ebuild,
+  +files/3.0.28-fix_broken_readdir_detection.patch,
+  +files/config-3.2/lmhosts, +files/config-3.2/nsswitch.conf-winbind,
+  +files/config-3.2/samba.pam, +files/config-3.2/samba.schema,
+  +files/3.0.26a-invalid-free-fix.patch,
+  +files/config-3.2/nsswitch.conf-wins,
+  +files/config-3.2/smb.conf.example-samba3, +files/config-3.2/smbusers,
+  +files/3.0.28a-CVE-2008-1105.patch, +files/3.0.28-inotify_include.patch,
+  +files/3.0.28-libcap_detection.patch, +files/config-3.2/swat.xinetd,
+  +files/3.0.28a-wrong_python_ldflags.patch,
+  +files/config-3.2/system-auth-winbind, +files/README.gentoo,
+  +files/config, +files/config/lmhosts, +files/config/nsswitch.conf-winbind,
+  +files/config/nsswitch.conf-wins, +files/config/samba.pam,
+  +files/config/samba.schema, +files/config/smb.conf.example-samba3,
+  +files/config/smbusers, +files/config/swat.xinetd,
+  +files/config/system-auth-winbind, +files/samba-conf, +files/samba-init,
+  +files/samba-xinetd:
+  Initial import form branches 3.2.x, include last CVE
+

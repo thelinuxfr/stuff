@@ -1,0 +1,8 @@
+# ChangeLog for media-libs/libfprint
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  28 Jan 2009; Frédéric Liétart <thelinuxfr@free.fr>
+  +libfprint-0.0.5.ebuild:
+  Initial Import
+

@@ -1,0 +1,11 @@
+# ChangeLog for sys-auth/pam_fprint
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  29 Jan 2009; Frédéric Liétart <thelinuxfr@free.fr>
+  pam_fprint-0.2.ebuild:
+  Add postinst
+
+  28 Jan 2009; Frédéric Liétart <thelinuxfr@free.fr> ChangeLog:
+  Initial Import.
+

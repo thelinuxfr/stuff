@@ -1,0 +1,12 @@
+diff -urNad tuxcmd-0.6.50~/UConfig.pas tuxcmd-0.6.50/UConfig.pas
+--- tuxcmd-0.6.50~/UConfig.pas	2008-10-03 20:36:28.000000000 +0200
++++ tuxcmd-0.6.50/UConfig.pas	2009-02-07 10:42:43.000000000 +0100
+@@ -924,7 +924,7 @@
+     if Sections.Count > 0 then
+       for i := 0 to Sections.Count - 1 do
+         if Sections[i] = '__General' then begin
+-          ConfConnMgrActiveItem := IniFile.ReadInteger('__General', 'ConfConnMgrActiveItem', ConfConnMgrActiveItem);
++          ConfConnMgrActiveItem := IniFile.ReadInteger('__General', 'ConnMgrActiveItem', ConfConnMgrActiveItem);
+         end else begin
+           Item := TConnMgrItem.Create;
+           with Item do begin

@@ -1,0 +1,16 @@
+--- blueman-1.01/data/configs/org.blueman.Mechanism.conf 
++++ blueman-1.01/data/configs/org.blueman.Mechanism.conf 
+@@ -4,11 +4,11 @@
+  "-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN"
+  "http://www.freedesktop.org/standards/dbus/1.0/busconfig.dtd">
+ <busconfig>
+-	<policy user="root">
++	<policy user="plugdev">
+ 		<allow own="org.blueman.Mechanism"/>
+ 	</policy>
+   	<policy context="default">
+     		<allow send_destination="org.blueman.Mechanism"/>
+-  	</policy>
++	</policy>
+ </busconfig>
+ 

@@ -1,0 +1,11 @@
+# ChangeLog for x11-themes/community-themes
+# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  13 Apr 2009; Frédéric Liétart <thelinuxfr@free.fr>
+  +community-themes-0.13.ebuild:
+  Version bump.
+
+  05 Oct 2008; Frédéric Lietart <thelinuxfr@free.fr> ChangeLog:
+  Initial Import from Ubuntu Intrepid
+
