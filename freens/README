@@ -1,2 +1,0 @@
-Dev : svn checkout https://svn.thelinuxfr.org/svn/freens/ --username USER freens 
-Users : svn checkout http://svn.thelinuxfr.org/svn/freens/ freens
