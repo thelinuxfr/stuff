@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# $FreeBSD: src/etc/rc.d/rpcbind,v 1.12.2.1.2.1 2008/10/02 02:57:24 kensmith Exp $
+#
+# Modified by Volker Theile (votdev@gmx.de)
+# Changes:
+# - Remove useless requirements
+#
+
+# PROVIDE: rpcbind
+# REQUIRE: NETWORKING ntpdate syslogd
+# XQUERY: -i "count(//nfsd/enable) > 0" -o "0" -b
+# RCVAR: rpcbind
+
+. /etc/rc.subr
+
+name="rpcbind"
+rcvar=`set_rcvar`
+command="/usr/sbin/${name}"
+
+load_rc_config $name
+run_rc_command "$1"
