@@ -72,7 +72,7 @@ ${1} "
 
 # Syntaxe: # su - -c "./debserver6.sh"
 # Syntaxe: or # sudo ./debserver6.sh
-VERSION="6.0.5"
+VERSION="6.0.6"
 clear
 
 
