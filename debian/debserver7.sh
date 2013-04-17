@@ -250,7 +250,7 @@ sleep 5
 clear
 ### install unattended-upgrades
 echo -e "\033[34m========================================================================================================\033[0m"
-echo -e "Installation des mises à jours automatiques (Y/n):"
+echo -e "Installation des mises à jours automatiques via Unattended (Y/n):"
 echo -e "\033[34m========================================================================================================\033[0m"
 read UPDATE
 : ${UPDATE:="Y"}
@@ -298,6 +298,20 @@ if [[ ${UPDATE} == [Yy] ]]; then
 
 fi
 ######
+
+### Configuration cron-apt
+echo -e "\033[34m========================================================================================================\033[0m"
+echo -e "Voulez-vous installer cron-apt (Y/n):"
+echo -e "\033[34m========================================================================================================\033[0m"
+read APTCRON
+: ${APTCRON:="Y"}
+
+if [[ ${APTCRON} == [Yy] ]]; then
+        apt-get install -f cron-apt
+        echo "Ajouter : "dist-upgrade -y -o APT::Get::Show-Upgraded=true" dans un fichier de config pour activer l'installation auto"
+	sleep 5
+fi
+
 
 ### Configuration Proxy APT
 echo -e "\033[34m========================================================================================================\033[0m"
