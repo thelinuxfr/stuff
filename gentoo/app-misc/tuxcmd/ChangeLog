@@ -1,9 +1,0 @@
-# ChangeLog for app-misc/tuxcmd
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
-
-  25 Feb 2009; Frédéric Liétart <thelinuxfr@free.fr>
-  +files/02_skip_0_and_NULL_mount_points.patch, +tuxcmd-0.6.50.ebuild,
-  +files/03_restore_last_used_item_fix_for_connmgr.patch:
-  Initial Import.
-

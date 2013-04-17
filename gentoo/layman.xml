@@ -1,6 +1,0 @@
-<layman>
-<overlay type="svn" src="http://thelinux.googlecode.com/svn/gentoo/" contact="thelinuxfr@free.fr" name="thelinux">
-<link>http://overlays.thelinuxfr.org/</link>
-<description>Overlay TheLinuxFr</description>
-</overlay>
-</layman>

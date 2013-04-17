@@ -1,8 +1,0 @@
-# ChangeLog for app-admin/mmc-web-proxy
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
-
-  17 May 2009; Frédéric Liétart <thelinuxfr@free.fr>
-  +mmc-web-proxy-2.3.2.ebuild:
-  Initial Import
-

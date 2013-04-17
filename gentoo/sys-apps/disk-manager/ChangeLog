@@ -1,8 +1,0 @@
-# ChangeLog for sys-apps/disk-manager
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
-
-  18 Apr 2009; Frédéric Liétart <thelinuxfr@free.fr>
-  +disk-manager-1.0.1.ebuild, +files/python2.5.patch:
-  Initial Import.
-

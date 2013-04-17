@@ -1,6 +1,0 @@
-<layman>
-<overlay type="svn" src="http://thelinux.googlecode.com/svn/ebox/" contact="thelinuxfr@free.fr" name="ebox-platform">
-<link>http://overlays.thelinuxfr.org/</link>
-<description>Ebox-PlatForm Overlay</description>
-</overlay>
-</layman>

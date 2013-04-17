@@ -1,8 +1,0 @@
-# ChangeLog for sys-apps/ebox-dhcp
-# Copyright 1999-2009 Gentoo Foundation; Distributed under the GPL v2
-# $Header: $
-
-  05 May 2009; Frédéric Liétart <thelinuxfr@free.fr>
-  +ebox-dhcp-1.0.ebuild:
-  Initial Import. Check deps module
-
