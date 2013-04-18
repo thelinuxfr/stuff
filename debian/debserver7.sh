@@ -307,11 +307,19 @@ read APTCRON
 : ${APTCRON:="Y"}
 
 if [[ ${APTCRON} == [Yy] ]]; then
-        apt-get install -f cron-apt
-        echo "Ajouter : "dist-upgrade -y -o APT::Get::Show-Upgraded=true" dans un fichier de config pour activer l'installation auto"
-	sleep 5
+        apt-get -y install cron-apt
 fi
 
+### Install lynis
+echo -e "\033[34m========================================================================================================\033[0m"
+echo -e "Voulez-vous installer lynis (logiciel d'audit système) (Y/n):"
+echo -e "\033[34m========================================================================================================\033[0m"
+read LYNIS
+: ${LYNIS:="Y"}
+
+if [[ ${LYNIS} == [Yy] ]]; then
+        apt-get -y install lynis
+fi
 
 ### Configuration Proxy APT
 echo -e "\033[34m========================================================================================================\033[0m"
@@ -348,7 +356,7 @@ read VBOX
 : ${VBOX:="Y"}
 
 if [[ ${VBOX} == [Yy] ]]; then
-	echo "deb http://download.virtualbox.org/virtualbox/debian wheezy contrib non-free" >> /etc/apt/sources.list
+	echo "deb http://download.virtualbox.org/virtualbox/debian wheezy contrib non-free" >> /etc/apt/sources.list.d/virtualbox.list
 	wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | apt-key add - &&
 	apt-get update &&
 	echo -e "\033[34m========================================================================================================\033[0m"
@@ -365,7 +373,7 @@ fi
 #: ${OWN:="Y"}
 #
 #if [[ ${OWN} == [Yy] ]]; then
-#	echo 'deb http://download.opensuse.org/repositories/isv:ownCloud:ownCloud2012/Debian_6.0/ /' >> /etc/apt/sources.list
+#	echo 'deb http://download.opensuse.org/repositories/isv:ownCloud:ownCloud2012/Debian_6.0/ /' >> /etc/apt/sources.list.d/owncloud.list
 #	wget http://download.opensuse.org/repositories/isv:ownCloud:ownCloud2012/Debian_6.0/Release.key && apt-key add - < Release.key  
 #	apt-get update &&
 #	echo -e "\033[34m========================================================================================================\033[0m"
@@ -401,23 +409,22 @@ if [[ ${AVAHI} == [Yy] ]]; then
 	apt-get install avahi-daemon
 	
 	echo -e "\033[34m========================================================================================================\033[0m"
-	echo -e "Veuillez modifier le fichier /etc/nsswitch.conf"
+	echo -e "Veuillez vérifier le fichier /etc/nsswitch.conf"
 	echo -e "hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4 mdns"
 	echo -e "\033[34m========================================================================================================\033[0m"
 	sleep 5
 fi
 
 ### Install Issue personnalisé
-echo -e "\033[34m========================================================================================================\033[0m"
-echo -e "Voulez-vous une bannière de connexion personnalisée (Y/n):"
-echo -e "\033[34m========================================================================================================\033[0m"
-read ISSUE
-: ${ISSUE:="Y"}
-
-if [[ ${ISSUE} == [Yy] ]]; then
-	wget http://dl.thelinuxfr.org/contribs/issue && mv issue /etc/issue
-
-fi
+#echo -e "\033[34m========================================================================================================\033[0m"
+#echo -e "Voulez-vous une bannière de connexion personnalisée (Y/n):"
+#echo -e "\033[34m========================================================================================================\033[0m"
+#read ISSUE
+#: ${ISSUE:="Y"}
+#
+#if [[ ${ISSUE} == [Yy] ]]; then
+#	wget http://dl.thelinuxfr.org/contribs/issue && mv issue /etc/issue
+#fi
 
 echo -e "\033[34m========================================================================================================\033[0m"
 echo "Liste d'applications utiles installées"
