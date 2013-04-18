@@ -308,6 +308,11 @@ read APTCRON
 
 if [[ ${APTCRON} == [Yy] ]]; then
         apt-get -y install cron-apt
+	echo "
+	APTCOMMAND=/usr/bin/apt-get
+	MAILTO="root"
+	MAILON="upgrade"" > /etc/cron-apt/config
+
 fi
 
 ### Install lynis
