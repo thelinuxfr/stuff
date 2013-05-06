@@ -79,7 +79,7 @@ clear
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
 # Voir plus bas les applications necessitant un depot specifique
-LISTE="ntp fail2ban htop rkhunter tree most ccze mc iftop smartmontools hdparm safe-rm molly-guard lm-sensors iotop apt-listbugs"
+LISTE="ntp fail2ban htop rkhunter tree most ccze mc iftop smartmontools hdparm safe-rm molly-guard lm-sensors iotop apt-listbugs byobu"
 #=============================================================================
 
 # Test que le script est lance en root
