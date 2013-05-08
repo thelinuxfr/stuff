@@ -250,70 +250,28 @@ echo -e "\033[34m===============================================================
 sleep 5
 
 clear
-### install unattended-upgrades
-echo -e "\033[34m========================================================================================================\033[0m"
-echo -e "Installation des mises à jours automatiques via Unattended (Y/n):"
-echo -e "\033[34m========================================================================================================\033[0m"
-read UPDATE
-: ${UPDATE:="Y"}
-if [[ ${UPDATE} == [Yy] ]]; then
-	apt-get install unattended-upgrades
-	echo "
-	APT::Periodic::Enable "1";
-	APT::Periodic::Update-Package-Lists "1";
-	APT::Periodic::Unattended-Upgrade "1";
-
-	// APT::Periodic::Download-Upgradeable-Packages "1";
-	// APT::Periodic::AutocleanInterval "5";
-	// APT::Periodic::RandomSleep "1800";" > /etc/apt/apt.conf.d/10periodic
-
-	echo "
-	// Automatically upgrade packages from these (origin, archive) pairs
-	// Unattended-Upgrade::Allowed-Origins {    
-	//    "${distro_id} stable";
-	//    "${distro_id} ${distro_codename}-security";
-	//    "${distro_id} ${distro_codename}-updates";
-	//  "${distro_id} ${distro_codename}-proposed-updates";
-	// };
-
-	// List of packages to not update
-	// Unattended-Upgrade::Package-Blacklist {
-	//  "vim";
-	//  "libc6";
-	//  "libc6-dev";
-	//  "libc6-i686";
-	// };
-
-	// Send email to this address for problems or packages upgrades
-	// If empty or unset then no email is sent, make sure that you 
-	// have a working mail setup on your system. The package 'mailx'
-	// must be installed or anything that provides /usr/bin/mail.
-	Unattended-Upgrade::Mail "$MAIL";
-
-	// Do automatic removal of new unused dependencies after the upgrade
-	// (equivalent to apt-get autoremove)
-	//Unattended-Upgrade::Remove-Unused-Dependencies "false";
-
-	// Automatically reboot *WITHOUT CONFIRMATION* if a 
-	// the file /var/run/reboot-required is found after the upgrade 
-	//Unattended-Upgrade::Automatic-Reboot "false";" > /etc/apt/apt.conf.d/50unattended-upgrades
-
-fi
-######
-
 ### Configuration cron-apt
 echo -e "\033[34m========================================================================================================\033[0m"
 echo -e "Voulez-vous installer cron-apt (Y/n):"
 echo -e "\033[34m========================================================================================================\033[0m"
-read APTCRON
-: ${APTCRON:="Y"}
+read CRONAPT
+: ${CRONAPT:="Y"}
 
-if [[ ${APTCRON} == [Yy] ]]; then
+if [[ ${CRONAPT} == [Yy] ]]; then
         apt-get -y install cron-apt
 	echo "
 APTCOMMAND=/usr/bin/apt-get
 MAILTO="root"
 MAILON="upgrade"" > /etc/cron-apt/config
+echo -e "\033[34m========================================================================================================\033[0m"
+echo -e "Voulez-vous installer les mises à jours automatiquements (Y/n):"
+echo -e "\033[34m========================================================================================================\033[0m"
+read CRONAPTAUTO
+: ${CRONAPTAUTO:="Y"}
+
+if [[ ${CRONAPTAUTO} == [Yy] ]]; then
+echo "dist-upgrade -y -o APT::Get::Show-Upgraded=true" > /etc/cron-apt/action.d/5-install
+fi
 
 fi
 
