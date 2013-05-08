@@ -92,20 +92,22 @@ fi
 # Mise a jour de la liste des depots
 #-----------------------------------
 echo "
-deb http://ftp.fr.debian.org/debian wheezy main contrib non-free
-#deb-src http://ftp.fr.debian.org/debian wheezy main contrib non-free
+deb http://http.debian.net/debian wheezy main contrib non-free
+#deb-src http://http.debian.net/debian wheezy main contrib non-free
 
-deb http://ftp.debian.org/debian/ wheezy-updates main contrib non-free
-#deb-src http://ftp.debian.org/debian/ wheezy-updates main contrib non-free
+deb http://http.debian.net/debian/ wheezy-updates main contrib non-free
+#deb-src http://http.debian.net/debian/ wheezy-updates main contrib non-free
 
 deb http://security.debian.org/ wheezy/updates main contrib non-free
 #deb-src http://security.debian.org/ wheezy/updates main contrib non-free
 
-#Third Parties Repos
-#deb-multimedia.org
+###Third Parties Repos
+## Deb-multimedia.org
 #deb http://www.deb-multimedia.org wheezy main non-free
-#Debian Backports
-#deb http://backports.debian.org/debian-backports wheezy-backports main" > /etc/apt/sources.list
+## Debian Backports
+#deb http://backports.debian.org/debian-backports wheezy-backports main
+## HWRaid
+#deb http://hwraid.le-vert.net/debian wheezy main" > /etc/apt/sources.list
 
 # Update 
 echo -e "\033[34m========================================================================================================\033[0m"
@@ -309,9 +311,9 @@ read APTCRON
 if [[ ${APTCRON} == [Yy] ]]; then
         apt-get -y install cron-apt
 	echo "
-	APTCOMMAND=/usr/bin/apt-get
-	MAILTO="root"
-	MAILON="upgrade"" > /etc/cron-apt/config
+APTCOMMAND=/usr/bin/apt-get
+MAILTO="root"
+MAILON="upgrade"" > /etc/cron-apt/config
 
 fi
 
