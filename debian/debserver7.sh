@@ -153,6 +153,19 @@ if [[ ${LOCALES} == [Yy] ]]; then
 fi
 ######
 
+### Désactiver les paquets recommandés !
+echo -e "\033[34m========================================================================================================\033[0m"
+echo -e "ATTENTION : Voulez-vous désactiver l'installation de paquets recommandés (Y/n):"
+echo -e "\033[34m========================================================================================================\033[0m"
+read NORECOMMENDS
+: ${NORECOMMENDS:="Y"}
+
+if [[ ${NORECOMMENDS} == [Yy] ]]; then
+	echo "APT::Install-Recommends "0";
+APT::Install-Suggests "0"; " > /etc/apt/apt.conf
+fi
+######
+
 clear
 ### confirm IP addr
 FOUNDIP=`ifconfig |grep Bcast|cut -d ":" -f 2|cut -d " " -f 1`
