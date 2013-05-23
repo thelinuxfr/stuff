@@ -1,0 +1,16 @@
+<?xml version="1.0" standalone='no'?><!--*-nxml-*-->
+<!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+<service-group>
+<name replace-wildcards="yes">DAAP server on %h</name>
+        <service>
+                <type>_daap._tcp</type>
+                <port>3689</port>
+                <txt-record>txtvers=1 iTShVersion=131073 Version=196610</txt-record>
+        </service>
+ 
+        <service>
+                <type>_rsp._tcp</type>
+                <port>3689</port>
+                <txt-record>txtvers=1 iTShVersion=131073 Version=196610</txt-record>
+        </service>
+</service-group>
