@@ -130,6 +130,7 @@ apt-get -y install $LISTE
 
 # Configuration bashrc
 #--------------
+cd /root &&
 wget http://dl.thelinuxfr.org/contribs/bashrc && mv bashrc .bashrc
 
 clear
@@ -274,7 +275,7 @@ if [[ ${CRONAPT} == [Yy] ]]; then
         apt-get -y install cron-apt
 	echo "
 APTCOMMAND=/usr/bin/apt-get
-MAILTO="root"
+MAILTO="$MAIL"
 MAILON="upgrade"" > /etc/cron-apt/config
 echo -e "\033[34m========================================================================================================\033[0m"
 echo -e "Voulez-vous installer les mises à jours automatiquements (Y/n):"
@@ -320,10 +321,10 @@ read WEBMIN
 : ${WEBMIN:="Y"}
 
 if [[ ${WEBMIN} == [Yy] ]]; then
-	wget http://prdownloads.sourceforge.net/webadmin/webmin_1.620_all.deb &&
-	dpkg --install webmin_1.620_all.deb &&
+	wget http://prdownloads.sourceforge.net/webadmin/webmin_1.630_all.deb &&
+	dpkg --install webmin_1.630_all.deb &&
 	apt-get install -f &&
-	rm webmin_1.620_all.deb
+	rm webmin_1.630_all.deb
 fi
 
 ### Install VirtualBox
@@ -344,21 +345,21 @@ if [[ ${VBOX} == [Yy] ]]; then
 fi
 
 ### Install Owncloud
-#echo -e "\033[34m========================================================================================================\033[0m"
-#echo -e "Voulez-vous installer le dépôt Owncloud Server (Y/n):"
-#echo -e "\033[34m========================================================================================================\033[0m"
-#read OWN
-#: ${OWN:="Y"}
-#
-#if [[ ${OWN} == [Yy] ]]; then
-#	echo 'deb http://download.opensuse.org/repositories/isv:ownCloud:ownCloud2012/Debian_6.0/ /' >> /etc/apt/sources.list.d/owncloud.list
-#	wget http://download.opensuse.org/repositories/isv:ownCloud:ownCloud2012/Debian_6.0/Release.key && apt-key add - < Release.key  
-#	apt-get update &&
-#	echo -e "\033[34m========================================================================================================\033[0m"
-#	echo -e "Vous pouvez maintenant installer Owncloud via : apt-get install owncloud owncloud-unsupported"
-#	echo -e "\033[34m========================================================================================================\033[0m"
-#	sleep 5
-#fi
+echo -e "\033[34m========================================================================================================\033[0m"
+echo -e "Voulez-vous installer le dépôt Owncloud Server (Y/n):"
+echo -e "\033[34m========================================================================================================\033[0m"
+read OWN
+: ${OWN:="Y"}
+
+if [[ ${OWN} == [Yy] ]]; then
+	echo 'deb http://download.opensuse.org/repositories/isv:ownCloud:ownCloud2012/Debian_7.0/ /' >> /etc/apt/sources.list.d/owncloud.list
+	wget http://download.opensuse.org/repositories/isv:ownCloud:ownCloud2012/Debian_6.0/Release.key && apt-key add - < Release.key  
+	apt-get update &&
+	echo -e "\033[34m========================================================================================================\033[0m"
+	echo -e "Vous pouvez maintenant installer Owncloud via : apt-get install owncloud owncloud-unsupported"
+	echo -e "\033[34m========================================================================================================\033[0m"
+	sleep 5
+fi
 
 ### Install DHCP Server
 echo -e "\033[34m========================================================================================================\033[0m"
