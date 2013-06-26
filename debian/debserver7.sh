@@ -379,6 +379,21 @@ if [[ ${DHCP} == [Yy] ]]; then
 	sleep 5
 fi
 
+### Install MariaDB
+echo -e "\033[34m========================================================================================================\033[0m"
+echo -e "Voulez-vous installer MariaDB 5.5 (Y/n):"
+echo -e "\033[34m========================================================================================================\033[0m"
+read MARIADB
+: ${MARIADB:="Y"}
+
+if [[ ${MARIADB} == [Yy] ]]; then
+	apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db &&
+	echo 'deb http://ftp.igh.cnrs.fr/pub/mariadb/repo/5.5/debian wheezy main' >> /etc/apt/sources.list.d/mariadb.list &&
+	apt-get update &&
+	apt-get upgrade &&
+	apt-get install mariadb-server
+fi
+
 ### Install Avahi
 echo -e "\033[34m========================================================================================================\033[0m"
 echo -e "Voulez-vous installer Avahi Daemon (Y/n):"
