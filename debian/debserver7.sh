@@ -315,6 +315,20 @@ if [[ ${PROXY} == [Yy] ]]; then
 	echo "Acquire::http::Proxy "http://${IPPROXY}";" > /etc/apt/apt.conf.d/01proxy
 fi
 
+### Install Glances
+echo -e "\033[34m========================================================================================================\033[0m"
+echo -e "Voulez-vous installer Glances 1.6 (Y/n):"
+echo -e "\033[34m========================================================================================================\033[0m"
+read GLANCES
+: ${GLANCES:="Y"}
+
+if [[ ${GLANCES} == [Yy] ]]; then
+	wget http://ftp.fr.debian.org/debian/pool/main/g/glances/glances_1.6-1_all.deb &&
+	dpkg --install glances_1.6-1_all.deb &&
+	apt-get install -f &&
+	rm glances_1.6-1_all.deb
+fi
+
 ### Install Webmin
 echo -e "\033[34m========================================================================================================\033[0m"
 echo -e "Voulez-vous installer Webmin (Y/n):"
