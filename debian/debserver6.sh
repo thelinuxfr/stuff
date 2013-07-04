@@ -346,8 +346,8 @@ read WEBMIN
 
 if [[ ${WEBMIN} == [Yy] ]]; then
 	wget http://prdownloads.sourceforge.net/webadmin/webmin_1.600_all.deb &&
-	dpkg --install webmin_1.600_all.deb &&
-	apt-get install -f &&
+	dpkg --install webmin_1.600_all.deb ||
+	apt-get install -fy &&
 	rm webmin_1.600_all.deb
 fi
 
@@ -410,7 +410,6 @@ read AVAHI
 
 if [[ ${AVAHI} == [Yy] ]]; then
 	apt-get install avahi-daemon
-	
 	echo -e "\033[34m========================================================================================================\033[0m"
 	echo -e "Veuillez modifier le fichier /etc/nsswitch.conf"
 	echo -e "hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4 mdns"
