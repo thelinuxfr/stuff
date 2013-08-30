@@ -1,0 +1,142 @@
+#!/bin/sh
+## Frederic Lietart 20090801
+
+### Variables ###
+NOM="Lietart"
+PRENOM="Frederic"
+MAIL="fred.lietart@free.fr"
+WORK=~/Ubuntu
+FINAL=~/Ubuntu/ppa
+DEPOT=DEPOT
+GPG="46CD18A3"
+DATE=`date -R`
+DISTRIBUTION="jaunty"
+#################
+
+clear
+
+case $1 in
+	create)
+	if [ $# = 5 ]
+	 then
+	echo "\033[1m#########################################################################################\033[0m"
+	echo "Paquetage de $2-$3 vers $4 ($5)"
+	echo "\033[1m#########################################################################################\033[0m"
+	sleep 5
+	 else
+	echo "Syntaxe : $0 create homebank 3.6 3.8 http://www.server.com/app.tar.gz" &&
+	exit 0
+	fi 
+
+	########## Mise en place des répertoire travail ################
+	cd $WORK && mkdir $2 && cd $2 &&
+
+	###### Récupération paquet #######
+	wget $5 && 
+
+	if test -f *$2*$4*.tar.gz;
+	then mv *$2*$4*.tar.gz $2_$4.orig.tar.gz &&
+	gunzip $2*$4*.gz &&
+	tar -xvf $2*$4*.tar && mv $2*$4 $2-$4;
+	else mv $2*$4*.tar.bz2 $2_$4.orig.tar.bz2 &&
+	bunzip2 $2*$4*.bz2 &&
+	tar -xvf $2*$4*.tar && mv $2*$4 $2-$4
+	fi
+
+
+	###### Récupération source #######
+	apt-get source $2 &&
+	 
+	cd $2*$3* &&
+	cp -rdf debian ../$2-$4 &&
+
+	clear
+	
+	echo "\033[1m#################################### COPIER/COLLER #####################################\033[0m"
+	echo "$2 ($4) $DISTRIBUTION; urgency=low" &&
+	echo "" &&
+	echo "  * New upstream release." &&
+	echo "    plus de détails." &&
+	echo "  * d'autres détails." &&
+	echo ""&&
+	echo " -- $NOM $PRENOM <$MAIL>  $DATE" && 
+	echo "\033[1m#########################################################################################\033[0m" &&
+	sleep 10 &&
+
+	cd ../$2-$4/debian &&
+	nano changelog &&
+	echo "\033[1m#########################################################################################\033[0m"
+	echo "Commande suivante: $0 build $2 $4"
+	echo "\033[1m#########################################################################################\033[0m"
+	;;
+
+	build)
+	if [ $# = 3 ]
+	 then
+	echo "\033[1m#########################################################################################\033[0m"
+	echo "Construction de $2-$3"
+	echo "\033[1m#########################################################################################\033[0m"
+	sleep 3
+	 else
+	echo "Syntaxe : $0 build homebank 3.8" &&
+	exit 0
+	fi 
+	########## Generation des source_changes ##########
+	cd $WORK/$2/$2*$3* && debuild -k0x$GPG -S -sa --lintian-opts -i &&
+
+	########## Lancement de pbuilder ##########
+	echo "Password Super-Utilisateur" &&
+	sudo pbuilder build $WORK/$2/*$2*$3*.dsc --buildresult $FINAL --debootstrapopts
+	;;
+
+	commit)
+	if [ $# = 3 ]
+	 then
+	echo "\033[1m#########################################################################################\033[0m"
+	echo "Commit de $2-$3"
+	echo "\033[1m#########################################################################################\033[0m"
+	sleep 2
+	 else
+	echo "Syntaxe : $0 commit homebank 3.8 " &&
+	exit 0
+	fi 
+  	########## Upload fichier changes ##########
+	#dput ubuntu $WORK/$2/*$2*$3*_source.changes &&
+	#dput revu $WORK/$2/*$2*$3*_source.changes
+	#dput getdeb $WORK/$2/*$2*$3*_source.changes 
+  	dput ppa:thelinuxfr/ppa $WORK/$2/*$2*$3*_source.changes
+	;;
+
+	search)
+	if [ $# = 2 ]
+	 then
+	echo "\033[1m#########################################################################################\033[0m"
+	echo "Recherche de $2 dans les dépôts Ubuntu"
+	echo "\033[1m#########################################################################################\033[0m"
+	 else
+	echo "Syntaxe : $0 search homebank" &&
+	exit 0
+	fi 
+	dpkg-query -W $2 &&
+	echo "" &&
+	apt-cache search $2
+  	;;
+  	
+  	depot)
+	if [ $# = 2 ]
+	 then
+	echo "\033[1m#########################################################################################\033[0m"
+	echo "Création du dépôt Ubuntu pour $2"
+	echo "\033[1m#########################################################################################\033[0m"
+	 else
+	echo "Syntaxe : $0 depot homebank" &&
+	exit 0
+	fi 
+	cd $WORK/$DEPOT && sudo cp -rdf $2* /var/www/incoming..... &&
+	sudo debarchiver -so 
+  	;;
+
+	*)
+	echo "Usage: $0 {create|build|commit|search|depot}" >&2
+	;;
+esac
