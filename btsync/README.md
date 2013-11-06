@@ -1,4 +1,4 @@
-1) Installation of BTSync binaries
+1) Installation of BTSync binaries on /usr/local/sbin
 * http://www.bittorrent.com/intl/fr/sync
 
 2) Create Daemon User
