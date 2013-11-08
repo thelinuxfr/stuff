@@ -19,6 +19,7 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="BTSync server"
 NAME="btsync"
 USER=$NAME
+GROUP=$NAME
 DAEMON=/usr/local/sbin/$NAME
 ROOT=/home/$NAME
 PIDFILE=$ROOT/$NAME.pid
@@ -47,7 +48,7 @@ do_start()
     echo "$NAME already running"
     RETVAL="1"
   else
-    start-stop-daemon --start --quiet --chuid $USER --name $NAME --exec $DAEMON -- --config /etc/btsync.conf
+    start-stop-daemon --start --quiet --chuid $USER --group $GROUP --name $NAME --exec $DAEMON -- --config /etc/btsync.conf
     RETVAL="$?"
     [ "$RETVAL" = "0" ] && echo "$NAME started"
   fi
