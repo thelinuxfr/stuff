@@ -8,7 +8,7 @@ wget --mirror --tries=3 http://swscan.apple.com/content/meta/mirror-config-1.pli
 wget --mirror --tries=3 http://swscan.apple.com/content/catalogs/Deprecations.plist &&
 wget --mirror --tries=3 http://swscan.apple.com/content/catalogs/index.sucatalog
 
-for index in index-leopard-snowleopard.merged-1.sucatalog index-leopard.merged-1.sucatalog index-lion-snowleopard-leopard.merged-1.sucatalog index-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog
+for index in index-leopard-snowleopard.merged-1.sucatalog index-leopard.merged-1.sucatalog index-lion-snowleopard-leopard.merged-1.sucatalog index-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog index-10.9-mountainlion-lion-snowleopard-leopard.merged-1.sucatalog
 do
 wget --mirror --tries=3 http://swscan.apple.com/content/catalogs/others/$index
 
