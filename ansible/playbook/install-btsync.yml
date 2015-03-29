@@ -1,0 +1,13 @@
+---
+- hosts: all
+  sudo: yes
+  tasks:
+   - name: 1. Installation clé Yeasoft
+     apt_key: url=http://debian.yeasoft.net/btsync.key state=present
+
+   - name: 2. Installation source
+     apt_repository: repo='deb http://debian.yeasoft.net/btsync wheezy main' state=present update_cache=yes
+
+   - name: 3. Installation BTSync
+     apt: name=btsync state=latest update_cache=true
+
