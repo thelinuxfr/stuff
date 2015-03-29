@@ -1,0 +1,32 @@
+---
+- hosts: all
+  sudo: yes
+
+  tasks:
+  - name: Installation des paquets par défauts pour Debian/Ubuntu
+    apt: name={{item}} state=latest
+    with_items:
+     - ntp
+     - fail2ban
+     - htop
+     - rkhunter
+     - manpages-fr
+     - manpages-fr-extra
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+  - name: Installation des paquets par défauts pour CentOS/RedHat
+    yum: name={{item}} state=latest
+    with_items:
+     - ntp
+    when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+  - name: Activation des services pour Debian/Ubuntu
+    service: name={{item}} state=started enabled=yes
+    with_items:
+     - ntp
+     - fail2ban
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+  - name: Activation des services pour CentOS/RedHat
+    service: name=ntpd state=started enabled=yes
+    when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
