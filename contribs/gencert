@@ -1,0 +1,11 @@
+#!/bin/sh
+
+openssl genrsa -des3 -out $1.key 2048 &&
+openssl req -new -key $1.key -out $1.csr &&
+cp $1.key $1.key.org &&
+openssl rsa -in $1.key.org -out $1.key &&
+openssl x509 -req -days 365 -in $1.csr -signkey $1.key -out $1.crt &&
+rm $1.csr $1.key.org &&
+
+echo "ssl_certificate /etc/nginx/certs/$1.crt;"
+echo "ssl_certificate_key /etc/nginx/certs/$1.key;"
