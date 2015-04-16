@@ -1,0 +1,20 @@
+#!/bin/sh
+## Definir ARCH
+## linux-x64 | linux-i386 | linux-arm | linux-glibc-i386 | linux-glibc-x64
+ARCH=linux-glibc-i386
+##
+
+## Definir name
+## BitTorrent-Sync_x64.tar.gz | BitTorrent-Sync_i386.tar.gz | BitTorrent-Sync_arm.tar.gz | BitTorrent-Sync_glibc23_i386.tar.gz | BitTorrent-Sync_glibc23_x64.tar.gz
+NAME=BitTorrent-Sync_glibc23_i386.tar.gz
+##
+
+/etc/init.d/btsync stop &&
+cd /root &&
+wget https://download-cdn.getsyncapp.com/$1/$ARCH/$NAME
+tar -xvf $NAME &&
+mv btsync /usr/local/sbin/ &&
+rm LICENSE.TXT &&
+rm README &&
+rm $NAME
+/etc/init.d/btsync start

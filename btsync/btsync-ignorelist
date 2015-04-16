@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if [ $# = 2 ]
+    then
+        echo "$1" >> $2/.sync/IgnoreList
+        echo "Ajout de $1 à la liste des éléments ignorés"
+    else
+       echo "Syntax : $0 MOT DESTINATION" &&
+       echo "Syntax : $0 '.Parent' /srv/backup"
+fi
