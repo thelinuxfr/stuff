@@ -69,7 +69,7 @@ ${1} "
 
 # Syntaxe: # su - -c "./debserver8.sh"
 # Syntaxe: or # sudo ./debserver8.sh
-VERSION="8.0"
+VERSION="8.0.1"
 clear
 
 
@@ -170,7 +170,7 @@ fi
 
 ### Désactiver les paquets recommandés !
 echo -e "\033[34m========================================================================================================\033[0m"
-echo -e "ATTENTION : Voulez-vous désactiver l'installation de paquets recommandés (Y/n):"
+echo -e "ATTENTION : Voulez-vous désactiver l'installation de paquets recommandés (y/N):"
 echo -e "\033[34m========================================================================================================\033[0m"
 read NORECOMMENDS
 : ${NORECOMMENDS:="Y"}
@@ -207,7 +207,7 @@ fi
 
 # Change FQDN !
 if [[ ${CHANGEFQDN} == [Yy] ]]; then
-	echo ${MACHINENAME} > /etc/hostname
+	echo ${FQDN} > /etc/hostname
 	hostname ${MACHINENAME}
 	echo "127.0.0.1       localhost
 127.0.1.1	${FQDN} ${MACHINENAME}
