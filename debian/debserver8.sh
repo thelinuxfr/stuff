@@ -158,9 +158,9 @@ read MAIL
 #=============================================================================
 # Reconfigure openssh-server !
 #=============================================================================
-echo -n "Voulez-vous autoriser l'accès root via SSH (Y/n): "
+echo -n "Voulez-vous autoriser l'accès root via SSH (y/N): "
 read SSHROOT
-: ${SSHROOT:="Y"}
+: ${SSHROOT:="N"}
 if [[ ${SSHROOT} == [Yy] ]]; then
 	echo 'openssh-server openssh-server/permit-root-login boolean true' | debconf-set-selections
 	sed -i "s/PermitRootLogin without-password/PermitRootLogin yes/g" /etc/ssh/sshd_config
@@ -171,11 +171,22 @@ fi
 #=============================================================================
 # Reconfigure locales !
 #=============================================================================
-echo -n "Voulez-vous reconfigurer locales (Y/n): "
+echo -n "Voulez-vous reconfigurer locales (y/N): "
 read LOCALES
-: ${LOCALES:="Y"}
+: ${LOCALES:="N"}
 if [[ ${LOCALES} == [Yy] ]]; then
 	dpkg-reconfigure locales
+fi
+#=============================================================================
+
+#=============================================================================
+# Install beep
+#=============================================================================
+echo -n "Voulez-vous mettre en place un bip au démarrage/extinction de la machine (y/N): "
+read BEEP
+: ${BEEP:="N"}
+if [[ ${BEEP} == [Yy] ]]; then
+	wget https://raw.githubusercontent.com/thelinuxfr/stuff/master/contribs/beep && mv beep /etc/init.d/ && chmod +x /etc/init.d/beep && update-rc.d beep defaults
 fi
 #=============================================================================
 
@@ -184,7 +195,7 @@ fi
 #=============================================================================
 echo -n "ATTENTION : Voulez-vous désactiver l'installation de paquets recommandés (y/N): "
 read NORECOMMENDS
-: ${NORECOMMENDS:="Y"}
+: ${NORECOMMENDS:="N"}
 if [[ ${NORECOMMENDS} == [Yy] ]]; then
     echo "APT::Install-Recommends "0";
     APT::Install-Suggests "0"; " > /etc/apt/apt.conf
@@ -206,9 +217,9 @@ FQDN=`hostname --fqdn`
 echo -ne "\nThis machine should have a proper hostname setup, something like: 'server.domain.tld'.\n
 Ideally it should correspond to the PTR of the IP ${IP}
 (or at least the PTR of the the public IP).\n
-The current fully qualified domain name appears to be: -> ${FQDN} <-\n\nDo you wan't to change that (Y/n): "
+The current fully qualified domain name appears to be: -> ${FQDN} <-\n\nDo you wan't to change that (y/N): "
 read CHANGEFQDN
-: ${CHANGEFQDN:="Y"}
+: ${CHANGEFQDN:="N"}
 if [[ ${CHANGEFQDN} == [Yy] ]]; then
 	getInpute "Entrer le nom de machine (pas le FQDN) (ex: server001):" domain
 	MACHINENAME="${ANSWER}"
@@ -294,9 +305,9 @@ clear
 #=============================================================================
 # Install apt-listbugs
 #=============================================================================
-echo -n "Voulez-vous installer apt-listbugs (Y/n): "
+echo -n "Voulez-vous installer apt-listbugs (y/N): "
 read APTLISTBUGS
-: ${APTLISTBUGS:="Y"}
+: ${APTLISTBUGS:="N"}
 if [[ ${APTLISTBUGS} == [Yy] ]]; then
 	apt-get install apt-listbugs
 fi
@@ -304,9 +315,9 @@ fi
 
 #=============================================================================
 # Install smartmontools
-echo -n "Voulez-vous installer smartmontools (Y/n): "
+echo -n "Voulez-vous installer smartmontools (y/N): "
 read SMART
-: ${SMART:="Y"}
+: ${SMART:="N"}
 if [[ ${SMART} == [Yy] ]]; then
 	apt-get install smartmontools
 fi
@@ -315,9 +326,9 @@ fi
 #=============================================================================
 # Install hdparm
 #=============================================================================
-echo -n "Voulez-vous installer hdparm (Y/n): "
+echo -n "Voulez-vous installer hdparm (y/N): "
 read HDPARM
-: ${HDPARM:="Y"}
+: ${HDPARM:="N"}
 if [[ ${HDPARM} == [Yy] ]]; then
 	apt-get install hdparm
 fi
@@ -326,9 +337,9 @@ fi
 #=============================================================================
 # Install lm-sensors
 #=============================================================================
-echo -n "Voulez-vous installer lm-sensors (Y/n): "
+echo -n "Voulez-vous installer lm-sensors (y/N): "
 read LMSENSORS
-: ${LMSENSORS:="Y"}
+: ${LMSENSORS:="N"}
 if [[ ${LMSENSORS} == [Yy] ]]; then
 	apt-get install lm-sensors
 fi
@@ -337,9 +348,9 @@ fi
 #=============================================================================
 # Configuration cron-apt
 #=============================================================================
-echo -n "Voulez-vous installer cron-apt (Y/n): "
+echo -n "Voulez-vous installer cron-apt (y/N): "
 read CRONAPT
-: ${CRONAPT:="Y"}
+: ${CRONAPT:="N"}
 if [[ ${CRONAPT} == [Yy] ]]; then
     apt-get -y install cron-apt
 	echo "
@@ -358,9 +369,9 @@ fi
 #=============================================================================
 # Configuration Proxy APT
 #=============================================================================
-echo -n "Voulez-vous vous raccorder à un proxy APT (Y/n): "
+echo -n "Voulez-vous vous raccorder à un proxy APT (y/N): "
 read PROXY
-: ${PROXY:="Y"}
+: ${PROXY:="N"}
 if [[ ${PROXY} == [Yy] ]]; then
 	echo -e "IP et port du proxy (example : 192.168.1.1:9999) ?"
 	read IPPROXY
@@ -371,9 +382,9 @@ fi
 #=============================================================================
 # Install Webmin
 #=============================================================================
-echo -n "Voulez-vous installer Webmin (Y/n):"
+echo -n "Voulez-vous installer Webmin (y/N):"
 read WEBMIN
-: ${WEBMIN:="Y"}
+: ${WEBMIN:="N"}
 if [[ ${WEBMIN} == [Yy] ]]; then
 	wget http://prdownloads.sourceforge.net/webadmin/webmin_1.740_all.deb &&
 	dpkg --install webmin_1.740_all.deb ||
@@ -385,9 +396,9 @@ fi
 #=============================================================================
 # Install Avahi
 #=============================================================================
-echo -n "Voulez-vous installer Avahi Daemon (Y/n): "
+echo -n "Voulez-vous installer Avahi Daemon (y/N): "
 read AVAHI
-: ${AVAHI:="Y"}
+: ${AVAHI:="N"}
 if [[ ${AVAHI} == [Yy] ]]; then
 	apt-get install avahi-daemon
 	echo -e "\033[34m========================================================================================================\033[0m"
@@ -399,9 +410,9 @@ fi
 #=============================================================================
 
 ### Install Issue personnalisé
-#echo -n "Voulez-vous une bannière de connexion personnalisée (Y/n): "
+#echo -n "Voulez-vous une bannière de connexion personnalisée (y/N): "
 #read ISSUE
-#: ${ISSUE:="Y"}
+#: ${ISSUE:="N"}
 #if [[ ${ISSUE} == [Yy] ]]; then
 #	wget http://dl.thelinuxfr.org/contribs/issue && mv issue /etc/issue
 #fi
