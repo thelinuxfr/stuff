@@ -55,3 +55,7 @@ else
     exit
     fi
 fi
+
+# Affiche le nom du serveur au login
+echo -n "Bienvenue sur "
+hostname --fqdn
