@@ -39,8 +39,19 @@ export HISTTIMEFORMAT="%Y/%m/%d_%T : "
 # les pages de man en couleur, necessite le paquet most
 export PAGER=most
 
-
 # enable bash completion in interactive shells
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
+fi
+
+# tmux autostart
+if [[ -z "$TMUX" ]]; then
+    tmux has-session &> /dev/null
+        if [ $? -eq 1 ]; then
+            exec tmux new
+        exit
+else
+    exec tmux attach
+    exit
+    fi
 fi
