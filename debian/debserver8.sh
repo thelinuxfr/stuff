@@ -362,7 +362,7 @@ read CRONAPTAUTO
 : ${CRONAPTAUTO:="Y"}
 if [[ ${CRONAPTAUTO} == [Yy] ]]; then
     echo "dist-upgrade -y -o APT::Get::Show-Upgraded=true" > /etc/cron-apt/action.d/5-install
-    echo 'DPkg::Post-Invoke { "if [ -x /usr/bin/rkhunter ] && grep -qiE '^APT_AUTOGEN=.?(true|yes)' /etc/default/rkhunter; then /usr/share/rkhunter/scripts/rkhupd.sh; fi" }' > /etc/apt/apt.conf.d/90rkhunter
+    echo 'DPkg::Post-Invoke { "if [ -x /usr/bin/rkhunter ] && grep -qiE '\''^APT_AUTOGEN=.?(true|yes)'\'' /etc/default/rkhunter; then /usr/share/rkhunter/scripts/rkhupd.sh; fi" }' > /etc/apt/apt.conf.d/90rkhunter
 fi
 fi
 #=============================================================================
