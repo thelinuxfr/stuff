@@ -69,7 +69,6 @@ ${1} "
 # Syntaxe: # su - -c "./debserver8.sh"
 # Syntaxe: or # sudo ./debserver8.sh
 VERSION="8.0.1"
-clear
 
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
@@ -83,6 +82,17 @@ LISTE="ntp fail2ban htop rkhunter tree most ccze iftop safe-rm molly-guard manpa
 if [ $EUID -ne 0 ]; then
   echo "Le script doit être lancé en root: # sudo $0" 1>&2
   exit 1
+fi
+#=============================================================================
+
+#=============================================================================
+# Test si version de Debian OK
+#=============================================================================
+if [ $(cut -d. -f1 /etc/debian_version) == '8' ]; then
+        clear
+else
+        echo "Script non compatible avec votre version de Debian" 1>&2
+        exit 1
 fi
 #=============================================================================
 
