@@ -153,8 +153,7 @@ apt-get -y install $LISTE
 #=============================================================================
 # Configuration bashrc
 #=============================================================================
-cd /root &&
-wget https://raw.githubusercontent.com/thelinuxfr/stuff/master/contribs/bashrc && mv bashrc .bashrc
+wget https://raw.githubusercontent.com/thelinuxfr/stuff/master/contribs/bashrc && mv -f bashrc $HOME/.bashrc
 clear
 #=============================================================================
 
