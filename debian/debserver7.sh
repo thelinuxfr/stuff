@@ -426,5 +426,8 @@ echo -e "\033[34m===============================================================
 echo "Liste d'applications utiles installées"
 echo "$LISTE"
 echo "Pensez à aller dans /etc/default pour configurer les daemons smartmontools hdparm"
+echo ""
+echo "Notes de publication : https://www.debian.org/releases/wheezy/releasenotes"
+echo "Manuel d'installation : https://www.debian.org/releases/wheezy/installmanual"
 echo -e "\033[34m========================================================================================================\033[0m"
 #=============================================================================
