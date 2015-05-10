@@ -354,7 +354,7 @@ if [[ ${CRONAPT} == [Yy] ]]; then
 APTCOMMAND=/usr/bin/apt-get
 MAILTO="$MAIL"
 MAILON="upgrade"" > /etc/cron-apt/config
-echo -n "Voulez-vous installer les mises à jours automatiquements (Y/n): "
+echo -n "\033[32;1mVoulez-vous installer les mises à jours automatiquements (Y/n): \033[0m"
 read CRONAPTAUTO
 : ${CRONAPTAUTO:="Y"}
 if [[ ${CRONAPTAUTO} == [Yy] ]]; then
