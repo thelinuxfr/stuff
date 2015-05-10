@@ -73,9 +73,7 @@ VERSION="7.0"
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
 # Voir plus bas les applications necessitant un depot specifique
-LISTE="ntp fail2ban htop rkhunter tree most ccze mc iftop smartmontools 
-hdparm safe-rm molly-guard lm-sensors iotop apt-listbugs byobu 
-manpages-fr manpages-fr-extra ncdu"
+LISTE="ntp fail2ban htop rkhunter tree most ccze iftop safe-rm molly-guard manpages-fr manpages-fr-extra tmux bash-completion"
 #=============================================================================
 
 #=============================================================================
@@ -130,61 +128,80 @@ echo -e "\033[34m===============================================================
 echo "Mise a jour de la liste des depots"
 echo -e "\033[34m========================================================================================================\033[0m"
 apt-get update
+clear
+#=============================================================================
 
+#=============================================================================
 # Upgrade
+#=============================================================================
 echo -e "\033[34m========================================================================================================\033[0m"
 echo "Mise a jour du systeme"
 echo -e "\033[34m========================================================================================================\033[0m"
 apt-get upgrade
-
 clear
+#=============================================================================
+
+#=============================================================================
 # Installation
+#=============================================================================
 echo -e "\033[34m========================================================================================================\033[0m"
 echo "Installation des logiciels suivants: $LISTE"
 echo -e "\033[34m========================================================================================================\033[0m"
 apt-get -y install $LISTE
+#=============================================================================
 
+#=============================================================================
 # Configuration bashrc
-#--------------
-cd /root &&
-wget http://dl.thelinuxfr.org/contribs/bashrc && mv bashrc .bashrc
-
+#=============================================================================
+wget https://raw.githubusercontent.com/thelinuxfr/stuff/master/contribs/bashrc && mv -f bashrc $HOME/.bashrc
 clear
-### EMAIL ROOT ###
-echo -e "\033[34m========================================================================================================\033[0m"
-echo -e "Adresse mail pour les rapports de securite: "
-echo -e "\033[34m========================================================================================================\033[0m"
+#=============================================================================
+
+#=============================================================================
+# Email admin
+#=============================================================================
+echo -n "Adresse mail pour les rapports de securite: "
 read MAIL 
+#=============================================================================
 
-# Configuration
-#--------------
-### reconfigure locales !
-echo -e "\033[34m========================================================================================================\033[0m"
-echo -e "Voulez-vous reconfigurer locales (Y/n):"
-echo -e "\033[34m========================================================================================================\033[0m"
+#=============================================================================
+# Reconfigure locales !
+#=============================================================================
+echo -n "Voulez-vous reconfigurer locales (y/N): "
 read LOCALES
-: ${LOCALES:="Y"}
-
+: ${LOCALES:="N"}
 if [[ ${LOCALES} == [Yy] ]]; then
 	dpkg-reconfigure locales
 fi
-######
+#=============================================================================
 
-### Désactiver les paquets recommandés !
-echo -e "\033[34m========================================================================================================\033[0m"
-echo -e "ATTENTION : Voulez-vous désactiver l'installation de paquets recommandés (Y/n):"
-echo -e "\033[34m========================================================================================================\033[0m"
-read NORECOMMENDS
-: ${NORECOMMENDS:="Y"}
-
-if [[ ${NORECOMMENDS} == [Yy] ]]; then
-	echo "APT::Install-Recommends "0";
-APT::Install-Suggests "0"; " > /etc/apt/apt.conf
+#=============================================================================
+# Install beep
+#=============================================================================
+echo -n "Voulez-vous mettre en place un bip au démarrage/extinction de la machine (y/N): "
+read BEEP
+: ${BEEP:="N"}
+if [[ ${BEEP} == [Yy] ]]; then
+	wget https://raw.githubusercontent.com/thelinuxfr/stuff/master/contribs/beep && mv beep /etc/init.d/ && chmod +x /etc/init.d/beep && update-rc.d beep defaults
 fi
-######
+#=============================================================================
 
+#=============================================================================
+# Désactiver les paquets recommandés !
+#=============================================================================
+echo -n "ATTENTION : Voulez-vous désactiver l'installation de paquets recommandés (y/N): "
+read NORECOMMENDS
+: ${NORECOMMENDS:="N"}
+if [[ ${NORECOMMENDS} == [Yy] ]]; then
+    echo "APT::Install-Recommends "0";
+    APT::Install-Suggests "0"; " > /etc/apt/apt.conf
+fi
+#=============================================================================
 clear
-### confirm IP addr
+
+#=============================================================================
+# Confirm IP addr
+#=============================================================================
 FOUNDIP=`ifconfig |grep Bcast|cut -d ":" -f 2|cut -d " " -f 1`
 DEFAULTIP=`ifconfig |grep Bcast|cut -d ":" -f 2|cut -d " " -f 1|head -n 1`
 echo -e "\033[34m========================================================================================================\\n IP(s) trouvée : ${FOUNDIP}\n========================================================================================================\\033[0m\n\nVérifier l'IP"
@@ -278,157 +295,107 @@ echo -e "\033[34m===============================================================
 echo -e "Ajout d'exemple de configuration dans /etc/network/interfaces.exemple"
 echo -e "\033[34m========================================================================================================\033[0m"
 sleep 5
-
 clear
-### Configuration cron-apt
-echo -e "\033[34m========================================================================================================\033[0m"
-echo -e "Voulez-vous installer cron-apt (Y/n):"
-echo -e "\033[34m========================================================================================================\033[0m"
-read CRONAPT
-: ${CRONAPT:="Y"}
+#=============================================================================
 
+#=============================================================================
+# Install apt-listbugs
+#=============================================================================
+echo -n "Voulez-vous installer apt-listbugs (y/N): "
+read APTLISTBUGS
+: ${APTLISTBUGS:="N"}
+if [[ ${APTLISTBUGS} == [Yy] ]]; then
+	apt-get install apt-listbugs
+fi
+#=============================================================================
+
+#=============================================================================
+# Install smartmontools
+echo -n "Voulez-vous installer smartmontools (y/N): "
+read SMART
+: ${SMART:="N"}
+if [[ ${SMART} == [Yy] ]]; then
+	apt-get install smartmontools
+fi
+#=============================================================================
+
+#=============================================================================
+# Install hdparm
+#=============================================================================
+echo -n "Voulez-vous installer hdparm (y/N): "
+read HDPARM
+: ${HDPARM:="N"}
+if [[ ${HDPARM} == [Yy] ]]; then
+	apt-get install hdparm
+fi
+#=============================================================================
+
+#=============================================================================
+# Install lm-sensors
+#=============================================================================
+echo -n "Voulez-vous installer lm-sensors (y/N): "
+read LMSENSORS
+: ${LMSENSORS:="N"}
+if [[ ${LMSENSORS} == [Yy] ]]; then
+	apt-get install lm-sensors
+fi
+#=============================================================================
+
+#=============================================================================
+# Configuration cron-apt
+#=============================================================================
+echo -n "Voulez-vous installer cron-apt (y/N): "
+read CRONAPT
+: ${CRONAPT:="N"}
 if [[ ${CRONAPT} == [Yy] ]]; then
-        apt-get -y install cron-apt
+    apt-get -y install cron-apt
 	echo "
 APTCOMMAND=/usr/bin/apt-get
 MAILTO="$MAIL"
 MAILON="upgrade"" > /etc/cron-apt/config
-echo -e "\033[34m========================================================================================================\033[0m"
-echo -e "Voulez-vous installer les mises à jours automatiquements (Y/n):"
-echo -e "\033[34m========================================================================================================\033[0m"
+echo -n "Voulez-vous installer les mises à jours automatiquements (Y/n): "
 read CRONAPTAUTO
 : ${CRONAPTAUTO:="Y"}
-
 if [[ ${CRONAPTAUTO} == [Yy] ]]; then
-echo "dist-upgrade -y -o APT::Get::Show-Upgraded=true" > /etc/cron-apt/action.d/5-install
+    echo "dist-upgrade -y -o APT::Get::Show-Upgraded=true" > /etc/cron-apt/action.d/5-install
+    echo 'DPkg::Post-Invoke { "if [ -x /usr/bin/rkhunter ] && grep -qiE '\''^APT_AUTOGEN=.?(true|yes)'\'' /etc/default/rkhunter; then /usr/share/rkhunter/scripts/rkhupd.sh; fi" }' > /etc/apt/apt.conf.d/90rkhunter
 fi
-
 fi
+#=============================================================================
 
-### Install lynis
-echo -e "\033[34m========================================================================================================\033[0m"
-echo -e "Voulez-vous installer lynis (logiciel d'audit système) (Y/n):"
-echo -e "\033[34m========================================================================================================\033[0m"
-read LYNIS
-: ${LYNIS:="Y"}
-
-if [[ ${LYNIS} == [Yy] ]]; then
-        apt-get -y install lynis
-fi
-
-### Configuration Proxy APT
-echo -e "\033[34m========================================================================================================\033[0m"
-echo -e "Voulez-vous vous raccorder à un proxy APT (Y/n):"
-echo -e "\033[34m========================================================================================================\033[0m"
+#=============================================================================
+# Configuration Proxy APT
+#=============================================================================
+echo -n "Voulez-vous vous raccorder à un proxy APT (y/N): "
 read PROXY
-: ${PROXY:="Y"}
-
+: ${PROXY:="N"}
 if [[ ${PROXY} == [Yy] ]]; then
 	echo -e "IP et port du proxy (example : 192.168.1.1:9999) ?"
 	read IPPROXY
 	echo "Acquire::http::Proxy "http://${IPPROXY}";" > /etc/apt/apt.conf.d/01proxy
 fi
+#=============================================================================
 
-### Install Glances
-echo -e "\033[34m========================================================================================================\033[0m"
-echo -e "Voulez-vous installer Glances 1.6 (Y/n):"
-echo -e "\033[34m========================================================================================================\033[0m"
-read GLANCES
-: ${GLANCES:="Y"}
-
-if [[ ${GLANCES} == [Yy] ]]; then
-	wget http://ftp.fr.debian.org/debian/pool/main/g/glances/glances_1.6-1_all.deb &&
-	dpkg --install glances_1.6-1_all.deb ||
-	apt-get install -fy &&
-	rm glances_1.6-1_all.deb
-fi
-
-### Install Webmin
-echo -e "\033[34m========================================================================================================\033[0m"
-echo -e "Voulez-vous installer Webmin (Y/n):"
-echo -e "\033[34m========================================================================================================\033[0m"
+#=============================================================================
+# Install Webmin
+#=============================================================================
+echo -n "Voulez-vous installer Webmin (y/N):"
 read WEBMIN
-: ${WEBMIN:="Y"}
-
+: ${WEBMIN:="N"}
 if [[ ${WEBMIN} == [Yy] ]]; then
-	wget http://prdownloads.sourceforge.net/webadmin/webmin_1.650_all.deb &&
-	dpkg --install webmin_1.650_all.deb ||
+	wget http://prdownloads.sourceforge.net/webadmin/webmin_1.740_all.deb &&
+	dpkg --install webmin_1.740_all.deb ||
 	apt-get install -fy &&
-	rm webmin_1.650_all.deb
+	rm webmin_1.740_all.deb
 fi
+#=============================================================================
 
-### Install VirtualBox
-echo -e "\033[34m========================================================================================================\033[0m"
-echo -e "Voulez-vous installer le dépôt Virtualbox (Y/n):"
-echo -e "\033[34m========================================================================================================\033[0m"
-read VBOX
-: ${VBOX:="Y"}
-
-if [[ ${VBOX} == [Yy] ]]; then
-	echo "deb http://download.virtualbox.org/virtualbox/debian wheezy contrib non-free" >> /etc/apt/sources.list.d/virtualbox.list
-	wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | apt-key add - &&
-	apt-get update &&
-	echo -e "\033[34m========================================================================================================\033[0m"
-	echo -e "Vous pouvez maintenant installer VirtualBox via : apt-get install virtualbox-4.1"
-	echo -e "\033[34m========================================================================================================\033[0m"
-	sleep 5
-fi
-
-### Install Owncloud
-echo -e "\033[34m========================================================================================================\033[0m"
-echo -e "Voulez-vous installer le dépôt Owncloud Server (Y/n):"
-echo -e "\033[34m========================================================================================================\033[0m"
-read OWN
-: ${OWN:="Y"}
-
-if [[ ${OWN} == [Yy] ]]; then
-	echo 'deb http://download.opensuse.org/repositories/isv:ownCloud:ownCloud2012/Debian_7.0/ /' >> /etc/apt/sources.list.d/owncloud.list
-	wget http://download.opensuse.org/repositories/isv:ownCloud:ownCloud2012/Debian_6.0/Release.key && apt-key add - < Release.key  
-	apt-get update &&
-	echo -e "\033[34m========================================================================================================\033[0m"
-	echo -e "Vous pouvez maintenant installer Owncloud via : apt-get install owncloud owncloud-unsupported"
-	echo -e "\033[34m========================================================================================================\033[0m"
-	sleep 5
-fi
-
-### Install DHCP Server
-echo -e "\033[34m========================================================================================================\033[0m"
-echo -e "Voulez-vous installer un serveur DNSMasq (DHCP/DNS) (Y/n):"
-echo -e "\033[34m========================================================================================================\033[0m"
-read DHCP
-: ${DHCP:="Y"}
-
-if [[ ${DHCP} == [Yy] ]]; then
-	apt-get install dnsmasq
-	echo -e "\033[34m========================================================================================================\033[0m"
-	echo -e "Vous pouvez maintenant personnaliser la configuration : /etc/dnsmasq.conf"
-	echo -e "http://wiki.debian.org/HowTo/dnsmasq | https://help.ubuntu.com/community/Dnsmasq | http://www.jopa.fr/index.php/2008/10/30/dnsmasq-dns-cache-et-dhcp/"
-	echo -e "\033[34m========================================================================================================\033[0m"
-	sleep 5
-fi
-
-### Install MariaDB
-echo -e "\033[34m========================================================================================================\033[0m"
-echo -e "Voulez-vous installer MariaDB 5.5 (Y/n):"
-echo -e "\033[34m========================================================================================================\033[0m"
-read MARIADB
-: ${MARIADB:="Y"}
-
-if [[ ${MARIADB} == [Yy] ]]; then
-	apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db &&
-	echo 'deb http://ftp.igh.cnrs.fr/pub/mariadb/repo/5.5/debian wheezy main' >> /etc/apt/sources.list.d/mariadb.list &&
-	apt-get update &&
-	apt-get upgrade &&
-	apt-get install mariadb-server
-fi
-
-### Install Avahi
-echo -e "\033[34m========================================================================================================\033[0m"
-echo -e "Voulez-vous installer Avahi Daemon (Y/n):"
-echo -e "\033[34m========================================================================================================\033[0m"
+#=============================================================================
+# Install Avahi
+#=============================================================================
+echo -n "Voulez-vous installer Avahi Daemon (y/N): "
 read AVAHI
-: ${AVAHI:="Y"}
-
+: ${AVAHI:="N"}
 if [[ ${AVAHI} == [Yy] ]]; then
 	apt-get install avahi-daemon
 	echo -e "\033[34m========================================================================================================\033[0m"
@@ -437,21 +404,25 @@ if [[ ${AVAHI} == [Yy] ]]; then
 	echo -e "\033[34m========================================================================================================\033[0m"
 	sleep 5
 fi
+#=============================================================================
 
-### Install Issue personnalisé
-#echo -e "\033[34m========================================================================================================\033[0m"
-#echo -e "Voulez-vous une bannière de connexion personnalisée (Y/n):"
-#echo -e "\033[34m========================================================================================================\033[0m"
+#=============================================================================
+# Install Issue personnalisé
+#=============================================================================
+#echo -n "Voulez-vous une bannière de connexion personnalisée (y/N): "
 #read ISSUE
-#: ${ISSUE:="Y"}
-#
+#: ${ISSUE:="N"}
 #if [[ ${ISSUE} == [Yy] ]]; then
 #	wget http://dl.thelinuxfr.org/contribs/issue && mv issue /etc/issue
 #fi
+#=============================================================================
 
+#=============================================================================
+# END
+#=============================================================================
 echo -e "\033[34m========================================================================================================\033[0m"
 echo "Liste d'applications utiles installées"
 echo "$LISTE"
 echo "Pensez à aller dans /etc/default pour configurer les daemons smartmontools hdparm"
 echo -e "\033[34m========================================================================================================\033[0m"
-# Fin du script
+#=============================================================================
