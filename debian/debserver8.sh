@@ -153,21 +153,21 @@ apt-get -y install $LISTE
 #=============================================================================
 # Configuration bashrc
 #=============================================================================
-wget https://raw.githubusercontent.com/thelinuxfr/stuff/master/contribs/bashrc && mv -f bashrc $HOME/.bashrc
+wget https://gitlab.com/thelinuxfr/stuff/raw/master/debian/wheezy/bashrc && mv -f bashrc $HOME/.bashrc
 clear
 #=============================================================================
 
 #=============================================================================
 # Email admin
 #=============================================================================
-echo -n "Adresse mail pour les rapports de securite: "
+echo -ne "\033[32;1mAdresse mail pour les rapports de securite: \033[0m"
 read MAIL 
 #=============================================================================
 
 #=============================================================================
 # Reconfigure openssh-server !
 #=============================================================================
-echo -n "Voulez-vous autoriser l'accès root via SSH (y/N): "
+echo -ne "\033[32;1mVoulez-vous autoriser l'accès root via SSH (y/N): \033[0m"
 read SSHROOT
 : ${SSHROOT:="N"}
 if [[ ${SSHROOT} == [Yy] ]]; then
@@ -180,7 +180,7 @@ fi
 #=============================================================================
 # Reconfigure locales !
 #=============================================================================
-echo -n "Voulez-vous reconfigurer locales (y/N): "
+echo -ne "\033[32;1mVoulez-vous reconfigurer locales (y/N): \033[0m"
 read LOCALES
 : ${LOCALES:="N"}
 if [[ ${LOCALES} == [Yy] ]]; then
@@ -191,19 +191,19 @@ fi
 #=============================================================================
 # Install beep
 #=============================================================================
-echo -n "Voulez-vous mettre en place un bip au démarrage/extinction de la machine (y/N): "
+echo -ne "\033[32;1mVoulez-vous mettre en place un bip au démarrage/extinction de la machine (y/N): \033[0m"
 read BEEP
 : ${BEEP:="N"}
 if [[ ${BEEP} == [Yy] ]]; then
     apt-get install -y beep
-	wget https://raw.githubusercontent.com/thelinuxfr/stuff/master/contribs/beep && mv beep /etc/init.d/ && chmod +x /etc/init.d/beep && update-rc.d beep defaults
+	wget https://gitlab.com/thelinuxfr/stuff/raw/master/debian/wheezy/init.d/beep && mv beep /etc/init.d/ && chmod +x /etc/init.d/beep && update-rc.d beep defaults
 fi
 #=============================================================================
 
 #=============================================================================
 # Désactiver les paquets recommandés !
 #=============================================================================
-echo -n "ATTENTION : Voulez-vous désactiver l'installation de paquets recommandés (y/N): "
+echo -ne "\033[31;1mATTENTION : Voulez-vous désactiver l'installation de paquets recommandés (y/N): \033[0m"
 read NORECOMMENDS
 : ${NORECOMMENDS:="N"}
 if [[ ${NORECOMMENDS} == [Yy] ]]; then
@@ -315,7 +315,7 @@ clear
 #=============================================================================
 # Install apt-listbugs
 #=============================================================================
-echo -n "Voulez-vous installer apt-listbugs (y/N): "
+echo -ne "\033[32;1mVoulez-vous installer apt-listbugs (y/N): \033[0m"
 read APTLISTBUGS
 : ${APTLISTBUGS:="N"}
 if [[ ${APTLISTBUGS} == [Yy] ]]; then
@@ -325,7 +325,7 @@ fi
 
 #=============================================================================
 # Install smartmontools
-echo -n "Voulez-vous installer smartmontools (y/N): "
+echo -ne "\033[32;1mVoulez-vous installer smartmontools (y/N): \033[0m"
 read SMART
 : ${SMART:="N"}
 if [[ ${SMART} == [Yy] ]]; then
@@ -336,7 +336,7 @@ fi
 #=============================================================================
 # Install hdparm
 #=============================================================================
-echo -n "Voulez-vous installer hdparm (y/N): "
+echo -ne "\033[32;1mVoulez-vous installer hdparm (y/N): \033[0m"
 read HDPARM
 : ${HDPARM:="N"}
 if [[ ${HDPARM} == [Yy] ]]; then
@@ -347,7 +347,7 @@ fi
 #=============================================================================
 # Install lm-sensors
 #=============================================================================
-echo -n "Voulez-vous installer lm-sensors (y/N): "
+echo -ne "\033[32;1mVoulez-vous installer lm-sensors (y/N): \033[0m"
 read LMSENSORS
 : ${LMSENSORS:="N"}
 if [[ ${LMSENSORS} == [Yy] ]]; then
@@ -358,7 +358,7 @@ fi
 #=============================================================================
 # Configuration cron-apt
 #=============================================================================
-echo -n "Voulez-vous installer cron-apt (y/N): "
+echo -ne "\033[32;1mVoulez-vous installer cron-apt (y/N): \033[0m"
 read CRONAPT
 : ${CRONAPT:="N"}
 if [[ ${CRONAPT} == [Yy] ]]; then
@@ -367,7 +367,7 @@ if [[ ${CRONAPT} == [Yy] ]]; then
 APTCOMMAND=/usr/bin/apt-get
 MAILTO="$MAIL"
 MAILON="upgrade"" > /etc/cron-apt/config
-echo -n "Voulez-vous installer les mises à jours automatiquements (Y/n): "
+echo -n "\033[32;1mVoulez-vous installer les mises à jours automatiquements (Y/n): \033[0m"
 read CRONAPTAUTO
 : ${CRONAPTAUTO:="Y"}
 if [[ ${CRONAPTAUTO} == [Yy] ]]; then
@@ -380,7 +380,7 @@ fi
 #=============================================================================
 # Configuration Proxy APT
 #=============================================================================
-echo -n "Voulez-vous vous raccorder à un proxy APT (y/N): "
+echo -ne "\033[32;1mVoulez-vous vous raccorder à un proxy APT (y/N): \033[0m"
 read PROXY
 : ${PROXY:="N"}
 if [[ ${PROXY} == [Yy] ]]; then
@@ -393,7 +393,7 @@ fi
 #=============================================================================
 # Install Webmin
 #=============================================================================
-echo -n "Voulez-vous installer Webmin (y/N):"
+echo -ne "\033[32;1mVoulez-vous installer Webmin (y/N): \033[0m"
 read WEBMIN
 : ${WEBMIN:="N"}
 if [[ ${WEBMIN} == [Yy] ]]; then
@@ -407,7 +407,7 @@ fi
 #=============================================================================
 # Install Avahi
 #=============================================================================
-echo -n "Voulez-vous installer Avahi Daemon (y/N): "
+echo -ne "\033[32;1mVoulez-vous installer Avahi Daemon (y/N): \033[0m"
 read AVAHI
 : ${AVAHI:="N"}
 if [[ ${AVAHI} == [Yy] ]]; then
@@ -420,8 +420,36 @@ if [[ ${AVAHI} == [Yy] ]]; then
 fi
 #=============================================================================
 
-### Install Issue personnalisé
-#echo -n "Voulez-vous une bannière de connexion personnalisée (y/N): "
+#=============================================================================
+# Install Glances
+#=============================================================================
+echo -ne "\033[32;1mVoulez-vous installer Glances (via pip) (y/N): \033[0m"
+read GLANCES
+: ${GLANCES:="N"}
+if [[ ${GLANCES} == [Yy] ]]; then
+	apt-get install -y curl
+    curl -L http://bit.ly/glances | /bin/bash
+fi
+#=============================================================================
+
+#=============================================================================
+# Install UFW
+#=============================================================================
+echo -ne "\033[32;1mVoulez-vous installer UFW (y/N): \033[0m"
+read UFW
+: ${UFW:="N"}
+if [[ ${UFW} == [Yy] ]]; then
+	apt-get install -y ufw
+    ufw allow ssh
+    ufw logging on
+    ufw enable
+fi
+#=============================================================================
+
+#=============================================================================
+# Install Issue personnalisé
+#=============================================================================
+#echo -ne "\033[32;1mVoulez-vous une bannière de connexion personnalisée (y/N): \033[0m"
 #read ISSUE
 #: ${ISSUE:="N"}
 #if [[ ${ISSUE} == [Yy] ]]; then
@@ -437,5 +465,8 @@ echo -e "\033[34m===============================================================
 echo "Liste d'applications utiles installées"
 echo "$LISTE"
 echo "Pensez à aller dans /etc/default pour configurer les daemons smartmontools hdparm"
+echo ""
+echo "Notes de publication : https://www.debian.org/releases/jessie/releasenotes"
+echo "Manuel d'installation : https://www.debian.org/releases/jessie/installmanual"
 echo -e "\033[34m========================================================================================================\033[0m"
 #=============================================================================
