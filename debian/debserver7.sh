@@ -66,12 +66,9 @@ ${1} "
 	done
 }
 
-
 # Syntaxe: # su - -c "./debserver7.sh"
 # Syntaxe: or # sudo ./debserver7.sh
 VERSION="7.0"
-clear
-
 
 #=============================================================================
 # Liste des applications à installer: A adapter a vos besoins
@@ -81,21 +78,35 @@ hdparm safe-rm molly-guard lm-sensors iotop apt-listbugs byobu
 manpages-fr manpages-fr-extra ncdu"
 #=============================================================================
 
+#=============================================================================
 # Test que le script est lance en root
+#=============================================================================
 if [ $EUID -ne 0 ]; then
   echo "Le script doit être lancé en root: # sudo $0" 1>&2
   exit 1
 fi
+#=============================================================================
 
+#=============================================================================
+# Test si version de Debian OK
+#=============================================================================
+if [ $(cut -d. -f1 /etc/debian_version) == '7' ]; then
+        clear
+else
+        echo "Script non compatible avec votre version de Debian" 1>&2
+        exit 1
+fi
+#=============================================================================
 
+#=============================================================================
 # Mise a jour de la liste des depots
-#-----------------------------------
+#=============================================================================
 echo "
-deb http://http.debian.net/debian wheezy main contrib non-free
-#deb-src http://http.debian.net/debian wheezy main contrib non-free
+deb http://httpredir.debian.org/debian wheezy main contrib non-free
+#deb-src http://httpredir.debian.org/debian wheezy main contrib non-free
 
-deb http://http.debian.net/debian/ wheezy-updates main contrib non-free
-#deb-src http://http.debian.net/debian/ wheezy-updates main contrib non-free
+deb http://httpredir.debian.org/debian wheezy-updates main contrib non-free
+#deb-src http://httpredir.debian.org/debian wheezy-updates main contrib non-free
 
 deb http://security.debian.org/ wheezy/updates main contrib non-free
 #deb-src http://security.debian.org/ wheezy/updates main contrib non-free
@@ -103,12 +114,18 @@ deb http://security.debian.org/ wheezy/updates main contrib non-free
 ###Third Parties Repos
 ## Deb-multimedia.org
 #deb http://www.deb-multimedia.org wheezy main non-free
-## Debian Backports
-#deb http://backports.debian.org/debian-backports wheezy-backports main
-## HWRaid
-#deb http://hwraid.le-vert.net/debian wheezy main" > /etc/apt/sources.list
 
+## Debian Backports
+#deb http://httpredir.debian.org/debian wheezy-backports main
+
+## HWRaid
+# wget -O - http://hwraid.le-vert.net/debian/hwraid.le-vert.net.gpg.key | sudo apt-key add -
+#deb http://hwraid.le-vert.net/debian wheezy main" > /etc/apt/sources.list
+#=============================================================================
+
+#=============================================================================
 # Update 
+#=============================================================================
 echo -e "\033[34m========================================================================================================\033[0m"
 echo "Mise a jour de la liste des depots"
 echo -e "\033[34m========================================================================================================\033[0m"
