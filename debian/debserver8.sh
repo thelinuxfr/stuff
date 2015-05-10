@@ -319,7 +319,7 @@ echo -n "Voulez-vous installer apt-listbugs (y/N): "
 read APTLISTBUGS
 : ${APTLISTBUGS:="N"}
 if [[ ${APTLISTBUGS} == [Yy] ]]; then
-	apt-get install apt-listbugs
+	apt-get install -y apt-listbugs
 fi
 #=============================================================================
 
@@ -329,7 +329,7 @@ echo -n "Voulez-vous installer smartmontools (y/N): "
 read SMART
 : ${SMART:="N"}
 if [[ ${SMART} == [Yy] ]]; then
-	apt-get install smartmontools
+	apt-get install -y smartmontools
 fi
 #=============================================================================
 
@@ -340,7 +340,7 @@ echo -n "Voulez-vous installer hdparm (y/N): "
 read HDPARM
 : ${HDPARM:="N"}
 if [[ ${HDPARM} == [Yy] ]]; then
-	apt-get install hdparm
+	apt-get install -y hdparm
 fi
 #=============================================================================
 
@@ -351,7 +351,7 @@ echo -n "Voulez-vous installer lm-sensors (y/N): "
 read LMSENSORS
 : ${LMSENSORS:="N"}
 if [[ ${LMSENSORS} == [Yy] ]]; then
-	apt-get install lm-sensors
+	apt-get install -y lm-sensors
 fi
 #=============================================================================
 
@@ -362,7 +362,7 @@ echo -n "Voulez-vous installer cron-apt (y/N): "
 read CRONAPT
 : ${CRONAPT:="N"}
 if [[ ${CRONAPT} == [Yy] ]]; then
-    apt-get -y install cron-apt
+    apt-get -y install -y cron-apt
 	echo "
 APTCOMMAND=/usr/bin/apt-get
 MAILTO="$MAIL"
@@ -411,7 +411,7 @@ echo -n "Voulez-vous installer Avahi Daemon (y/N): "
 read AVAHI
 : ${AVAHI:="N"}
 if [[ ${AVAHI} == [Yy] ]]; then
-	apt-get install avahi-daemon
+	apt-get install -y avahi-daemon
 	echo -e "\033[34m========================================================================================================\033[0m"
 	echo -e "Veuillez vérifier le fichier /etc/nsswitch.conf"
 	echo -e "hosts: files mdns4_minimal [NOTFOUND=return] dns mdns4 mdns"
