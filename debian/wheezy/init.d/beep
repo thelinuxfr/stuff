@@ -1,0 +1,35 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          beep
+# Required-Start:    $all
+# Required-Stop:     $all
+# Should-Start:
+# Should-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Beeps after system start or before shutdown
+### END INIT INFO
+
+case "$1" in
+        start|"")
+                 /usr/bin/beep -l 125 -f 500 &&
+                /usr/bin/beep -l 125 -f 1000 &&
+                /usr/bin/beep -l 125 -f 2000 &&
+                /usr/bin/beep -l 125 -f 3000 &&
+                /usr/bin/beep -l 125 -f 4000 &&
+                /usr/bin/beep -l 125 -f 5000
+                ;;
+        stop)
+                /usr/bin/beep -l 125 -f 5000 &&
+                /usr/bin/beep -l 125 -f 4000 &&
+                /usr/bin/beep -l 125 -f 3000 &&
+                /usr/bin/beep -l 125 -f 2000 &&
+                /usr/bin/beep -l 125 -f 1000 &&
+                /usr/bin/beep -l 125 -f 500
+                ;;
+        *)
+                echo "Usage: beep [start|stop]" >&2
+                exit 3
+                ;;
+esac

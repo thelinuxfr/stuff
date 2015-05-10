@@ -1,0 +1,7 @@
+RTKT_FILE_WHITELIST=/etc/init.d/hdparm /etc/init.d/.depend.boot
+ALLOW_SSH_ROOT_USER=yes
+
+ALLOWHIDDENDIR=/dev/.udev
+ALLOWHIDDENDIR=/dev/.static
+ALLOWHIDDENDIR=/dev/.initramfs
+ALLOWHIDDENDIR=/dev/.java

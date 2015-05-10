@@ -1,0 +1,1 @@
+Acquire::http::Proxy "http://<adresse_du_serveur_apt-cacher>:9999";

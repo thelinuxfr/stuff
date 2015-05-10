@@ -1,0 +1,4 @@
+
+APTCOMMAND=/usr/bin/apt-get
+MAILTO=/var/mail/root
+MAILON=upgrade

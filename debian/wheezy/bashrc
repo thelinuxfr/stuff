@@ -1,0 +1,61 @@
+#-------------------
+# Alias
+#-------------------
+
+alias ls='ls -h --color --group-directories-first'	# la couleur pour chaque type de fichier, les repertoires s'affichent en premier
+alias lsa='ls -A'	# affiche les fichiers caches
+alias ll='ls -ls'	# affiche en mode liste detail
+alias lla='ls -Al'	# affiche en mode liste detail + fichiers caches
+alias lx='ls -lXB'	# tri par extension
+alias lk='ls -lSr'      # tri par taille, le plus lourd à la fin
+alias lc='ls -ltcr'     # tri par date de modification, la pus recente à la fin
+alias lu='ls -ltur'     # tri par date d’acces, la pus recente à la fin
+alias lt='ls -ltr'      # tri par date, la pus recente à la fin
+alias lm='ls -al | more'        # Pipe a travers 'more'
+alias lr='ls -lR'       # ls recurssif
+alias tree='tree -Csu'  # affciche sous forme d'arborescence, necessite le paquet "tree"
+alias voirlog='tail -f' # affiche les derniere d'un fichier log (par exemple) en live
+alias df='df -kTh'      # commande df avec l'option -human
+alias du='du -kh'       # commande du avec l'option -human
+alias du1='du -kh --max-depth=1'        # commande du avec l'option -human, au niveau du repertoire courant
+alias free='free -m'    # commande free avec l'option affichage en Mo
+alias top='htop'                # necessite le paquet "htop", un top ameliore et en couleur
+alias shistory='history | grep'        # faire une recherche dans l'historique de commande
+alias h='history'              # raccourci history
+alias mkdir='mkdir -p'  # pour eviter l'ecrasement lors de creation de dossier
+alias ..='cd ..'        # raccourci repertoire parent
+alias rm="safe-rm" # evite les erreurs
+
+# Ajout log en couleurs
+ctail() { tail -f $1 | ccze -A; }
+cless() { ccze -A < $1 | less -R; }
+
+#set a fancy prompt (non-color, unless we know we want color)
+PS1="\\[\\033[01;31m\\][\\u@\\h\\[\\033[00m\\]:\\[\\033[01;34m\\]\\w]\\[\\033[00m\\]\\$ "
+
+# activation date_heure dans la commande history
+export HISTTIMEFORMAT="%Y/%m/%d_%T : "
+
+# les pages de man en couleur, necessite le paquet most
+export PAGER=most
+
+# enable bash completion in interactive shells
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+# tmux autostart
+if [[ -z "$TMUX" ]]; then
+    tmux has-session &> /dev/null
+        if [ $? -eq 1 ]; then
+            exec tmux new
+        exit
+else
+    exec tmux attach
+    exit
+    fi
+fi
+
+# Affiche le nom du serveur au login
+echo -n "Bienvenue sur "
+hostname --fqdn
