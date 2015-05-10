@@ -153,7 +153,7 @@ apt-get -y install $LISTE
 #=============================================================================
 # Configuration bashrc
 #=============================================================================
-wget https://raw.githubusercontent.com/thelinuxfr/stuff/master/contribs/bashrc && mv -f bashrc $HOME/.bashrc
+wget https://gitlab.com/thelinuxfr/stuff/raw/master/debian/wheezy/bashrc && mv -f bashrc $HOME/.bashrc
 clear
 #=============================================================================
 
@@ -183,7 +183,7 @@ read BEEP
 : ${BEEP:="N"}
 if [[ ${BEEP} == [Yy] ]]; then
     apt-get install -y beep
-	wget https://raw.githubusercontent.com/thelinuxfr/stuff/master/contribs/beep && mv beep /etc/init.d/ && chmod +x /etc/init.d/beep && update-rc.d beep defaults
+	wget https://gitlab.com/thelinuxfr/stuff/raw/master/debian/wheezy/init.d/beep && mv beep /etc/init.d/ && chmod +x /etc/init.d/beep && update-rc.d beep defaults
 fi
 #=============================================================================
 
