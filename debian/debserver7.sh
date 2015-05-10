@@ -216,7 +216,7 @@ Ideally it should correspond to the PTR of the IP ${IP}
 (or at least the PTR of the the public IP).\n
 The current fully qualified domain name appears to be: -> ${FQDN} <-\n\nDo you wan't to change that (Y/n): "
 read CHANGEFQDN
-: ${CHANGEFQDN:="Y"}
+: ${CHANGEFQDN:="N"}
 if [[ ${CHANGEFQDN} == [Yy] ]]; then
 	getInpute "Entrer le nom de machine (pas le FQDN) (ex: server001):" domain
 	MACHINENAME="${ANSWER}"
