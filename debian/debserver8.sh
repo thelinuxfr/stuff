@@ -195,6 +195,7 @@ echo -n "Voulez-vous mettre en place un bip au démarrage/extinction de la machi
 read BEEP
 : ${BEEP:="N"}
 if [[ ${BEEP} == [Yy] ]]; then
+    apt-get install -y beep
 	wget https://raw.githubusercontent.com/thelinuxfr/stuff/master/contribs/beep && mv beep /etc/init.d/ && chmod +x /etc/init.d/beep && update-rc.d beep defaults
 fi
 #=============================================================================
