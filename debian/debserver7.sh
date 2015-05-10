@@ -1,25 +1,22 @@
 #!/bin/bash
 
-#   debserver7.sh - a bunch of functions used in the other scripts
+#    debserver7.sh - a bunch of functions used in the other scripts
 #
-#   DEBServer7 - Debian Install Server Scripts
-#   A set of scripts to automate installation of Servers on Debian
-#   (c) 2012 Lietart Frederic - thelinuxfrATfree.fr
+#    DEBServer7 - Debian Install Server Scripts
+#    A set of scripts to automate installation of Servers on Debian
+#    Copyright (c) 2015 Frédéric LIETART - stuff@thelinuxfr.org
 #
-#   This file is part of DEBServer.
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License.
 #
-#   DEBServer7 free software: you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation, either version 3 of the License, or
-#   (at your option) any later version.
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
 #
-#   DEBServer7 is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#
-#   You should have received a copy of the GNU General Public License
-#   along with DEBServer6.  If not, see <http://www.gnu.org/licenses/>.
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
 # simple input thing
