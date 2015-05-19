@@ -94,12 +94,12 @@ fi
 #-----------------------------------
 echo "
 ## squeeze
-deb http://ftp.fr.debian.org/debian/ squeeze main contrib non-free
-# deb-src http://ftp.fr.debian.org/debian/ squeeze main contrib non-free
-  
-## squeeze security
-deb http://security.debian.org/ squeeze/updates main contrib non-free
-# deb-src http://security.debian.org/ squeeze/updates main contrib non-free
+deb http://http.debian.net/debian/ squeeze main contrib non-free
+#deb-src http://http.debian.net/debian/ squeeze main contrib non-free
+
+## squeeze LTS
+deb http://http.debian.net/debian squeeze-lts main contrib non-free
+#deb-src http://http.debian.net/debian squeeze-lts main contrib non-free
 
 ## squeeze updates 
 deb http://ftp.fr.debian.org/debian/ squeeze-updates main contrib non-free
@@ -109,7 +109,7 @@ deb http://ftp.fr.debian.org/debian/ squeeze-updates main contrib non-free
 #deb http://ftp.fr.debian.org/debian squeeze-proposed-updates main contrib non-free
 
 ## squeeze-backports
-# deb http://backports.debian.org/debian-backports squeeze-backports main contrib non-free
+#deb http://http.debian.net/debian-backports squeeze-backports-sloppy main
 
 ## squeeze multimedia
 # deb http://www.debian-multimedia.org squeeze main non-free
