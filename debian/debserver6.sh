@@ -136,7 +136,7 @@ apt-get -y install $LISTE
 
 # Configuration bashrc
 #--------------
-wget http://dl.thelinuxfr.org/contribs/bashrc && mv bashrc .bashrc
+wget https://gitlab.com/thelinuxfr/stuff/raw/master/debian/wheezy/bashrc && mv bashrc .bashrc
 
 clear
 ### EMAIL ROOT ###
@@ -168,9 +168,9 @@ read BYOBU
 
 if [[ ${BYOBU} == [Yy] ]]; then
 	apt-get install -f byobu
-	wget http://dl.thelinuxfr.org/contribs/byobu/color &&
-	wget http://dl.thelinuxfr.org/contribs/byobu/keybindings &&
-	wget http://dl.thelinuxfr.org/contribs/byobu/status &&
+	wget https://gitlab.com/thelinuxfr/stuff/raw/master/contribs/byobu/color &&
+	wget https://gitlab.com/thelinuxfr/stuff/raw/master/contribs/byobu/keybindings &&
+	wget https://gitlab.com/thelinuxfr/stuff/raw/master/contribs/byobu/status &&
 	mkdir $HOME/.byobu && mv color status keybindings $HOME/.byobu
 
 fi
