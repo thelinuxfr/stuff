@@ -368,23 +368,6 @@ if [[ ${VBOX} == [Yy] ]]; then
 	sleep 5
 fi
 
-### Install Owncloud
-echo -e "\033[34m========================================================================================================\033[0m"
-echo -e "Voulez-vous installer le dépôt Owncloud Server (Y/n):"
-echo -e "\033[34m========================================================================================================\033[0m"
-read OWN
-: ${OWN:="Y"}
-
-if [[ ${OWN} == [Yy] ]]; then
-	echo 'deb http://download.opensuse.org/repositories/isv:ownCloud:ownCloud2012/Debian_6.0/ /' >> /etc/apt/sources.list
-	wget http://download.opensuse.org/repositories/isv:ownCloud:ownCloud2012/Debian_6.0/Release.key && apt-key add - < Release.key  
-	apt-get update &&
-	echo -e "\033[34m========================================================================================================\033[0m"
-	echo -e "Vous pouvez maintenant installer Owncloud via : apt-get install owncloud owncloud-unsupported"
-	echo -e "\033[34m========================================================================================================\033[0m"
-	sleep 5
-fi
-
 ### Install DHCP Server
 echo -e "\033[34m========================================================================================================\033[0m"
 echo -e "Voulez-vous installer un serveur DNSMasq (DHCP/DNS) (Y/n):"
