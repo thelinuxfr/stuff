@@ -345,10 +345,10 @@ read WEBMIN
 : ${WEBMIN:="Y"}
 
 if [[ ${WEBMIN} == [Yy] ]]; then
-	wget http://prdownloads.sourceforge.net/webadmin/webmin_1.650_all.deb &&
-	dpkg --install webmin_1.650_all.deb ||
+	wget http://prdownloads.sourceforge.net/webadmin/webmin_1.740_all.deb &&
+	dpkg --install webmin_1.740_all.deb ||
 	apt-get install -fy &&
-	rm webmin_1.650_all.deb
+	rm webmin_1.740_all.deb
 fi
 
 ### Install VirtualBox
