@@ -425,7 +425,7 @@ read ISSUE
 : ${ISSUE:="Y"}
 
 if [[ ${ISSUE} == [Yy] ]]; then
-	wget http://dl.thelinuxfr.org/contribs/issue && mv issue /etc/issue
+	wget https://gitlab.com/thelinuxfr/stuff/raw/master/contribs/issue && mv issue /etc/issue
 
 fi
 
