@@ -36,3 +36,4 @@ Petit script permettant d'automatiser plusieurs tâches pour Debian (Squeeze, Wh
 - glances : https://nicolargo.github.io/glances/
 - cheat : https://github.com/chrisallenlane/cheat
 - ufw : https://launchpad.net/ufw
+- needrestart : https://github.com/liske/needrestart
