@@ -3,6 +3,6 @@ Stuff TheLinuxFr
 Various contributions and scripts
 
 
-Frédéric LIETART
+Frédéric LIETART (Orleans)
 * www.thelinuxfr.org
 * www.lietart.fr
