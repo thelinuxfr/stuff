@@ -1,0 +1,3 @@
+GITHUBMIRROR:
+  script:
+    - git push -q -f --mirror https://$GITHUB_USERNAME:$GITHUB_PASSWORD@github.com/thelinuxfr/stuff.git
